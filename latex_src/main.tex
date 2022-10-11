@@ -1,0 +1,560 @@
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{subfiles}
+
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={DOCUMENTO DE REQUISITOS},    % title
+    pdfauthor={Grupo Rojo},                     % author
+    pdfsubject={Compitational Learning},                        % subject of the document
+    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.3}
+\date{}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\begin{document}
+
+\begin{center}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{GESTOR DE TAREAS ROBOTS ASISTENCIALES}\\
+        \vspace{1.5 cm}
+        grupo rojo\\
+        \vspace{1.5 cm}
+        Ingeniería Web\\
+        \vspace{1.5 cm}
+        \LARGE{Versión \myversion}\\
+        \vspace{1 cm}
+        Realizado por: Alejandro Domínguez Recio \\
+        Hugo Ávalos de Rorthais \\
+        Rosario García Morales\\
+        Laura Núñez Jiménez\\
+        Jesús Aldana Martín \\
+        \vspace{1 cm}
+        Profesor : Javier Cámara Moreno\\
+        \vspace{1 cm}
+        \today\\
+    \end{bfseries}
+\end{center}
+
+\tableofcontents
+
+\chapter{Introducción}
+La sanidad pública en muchos países se ve saturada por la alta demanda de pacientes enfermos o que requieren de un diagnóstico, esto provoca grandes retrasos a la hora de pedir citas y aumenta la probabilidad de que produzcan problemas humanos por el nivel de saturación que encontramos en algunos hospitales. Es por ello que los robots asistenciales están tomando mucho protagonismo en el ámbito sanitario. Estos pueden mejorar el rendimiento y optimizar trabajos para ayudar así al sanitario. Para mejorar está situación se han comenzado a incorporar en los hospitales robots controlados por una aplicación que ayuden a tener una mejor comunicación interna dentro del hospital y liberar a los sanitarios, enfermeros y auxiliares de tareas rutinarias que a día de hoy pueden resolver robots sin ningún tipo de problema. 
+
+\section{Objetivos}
+Durante el desarrollo de nuestra aplicación buscamos resolver los siguientes escenarios:
+Con el desarrollo de este proyecto perseguimos crear una aplicación web que comunique de forma remota al sanitario con los robots del hospital, principalmente nos centraremos en la inserción y modificación de tareas desde la web. Para que el robot se desplace automáticamente tras recibir alguna petición por parte del sanitario. Los robots y, por tanto, nuestra app se centrara en tareas especializadas en desinfección, transporte de medicamentos y teleasistencia.
+
+\begin{itemize}
+    \item Permitir la comunicación entre el sanitario y el robot. 
+    \item Una buena gestión de manejo de tareas de los robots asistenciales.
+    \item Agilizar el trabajo del personal sanitario. 
+\end{itemize}
+
+\section{Formato utilizado}
+
+Se ha decidido usar una tabla por requisito. En cada tabla se añadirá la descripción del requisito, la prioridad que tiene respecto a los demás, el riesgo de no cumplirse y una descripción del mismo, el motivo del requisito y los requisitos padres en caso de tener alguno. El motivo por el cual se ha decidido usar esta implementación es la sencillez de visualización tanto para los realizadores del proyecto como para el cliente a la hora de mostrarle estos requisitos. 
+
+Además, para la redacción de la memoria del proyecto, se ha utilizado Latex, concretamente para como editor de texto en este formato se ha usado Overleaf, un editor online en el que se pueden crear redacciones colaborativas y así, todos los integrantes del grupo puedan editar esta documento simultáneamente.Se ha utilizado una plantilla de overleaf preexistente, con su respectiva tipografía, formato de títulos, portada etc... . Otro motivo por el que hemos optado por Latex es que este se trata de un editor de texto plano y fácilmente portable a cualquier sistema operativo o herramienta de control de versiones por lo que en todo momento se podrán ver los cambios realizados.
+
+\chapter{Descripción de producto}
+El producto trata de una aplicación web orientada a la gestión de robots de un centro sanitario. Esta aplicación por parte del sanitario se usará para gestionar los robots y obtener 'feedback' sobre su estado. Por parte del técnico, modificará la plantilla de robots, definirá los posibles comportamientos y tratará con los errores de los mismos.
+
+\section{Características de los usuarios y entorno }
+
+Definiendo como usuario a toda aquella persona que interactúa directamente con la aplicación. En esta sección se detallaran las principales características de los usuarios así como del uso que harán estos de la aplicación. 
+
+\begin{table}[H]
+\subsection{Resumen de los usuarios}
+\vspace{0.3cm}
+\label{tab:my-table-user}
+
+\begin{tabular}{ |p{2cm}|p{10cm}|p{3cm}|  }
+\hline
+ \textbf{Nombre} & \textbf{Descripción} & \textbf{Relaciones}\\
+\hline
+Técnico                        & Encargado de la gestión técnica de la flota de robots. Realiza las tareas de incorporación o retirada de robots, configuración de tareas o apoya en caso de incidencias & Relación Técnico-Sanitario \\ 
+\hline
+Sanitario                          & Encargado de la gestión del estado de la flota de robots. Realiza las tareas de asignación, modificación o eliminación de las tareas asignadas a los robots. & Relación Sanitario-Técnico  \\ 
+\hline
+\end{tabular}%
+
+\caption{Resumen usuarios}
+\end{table}
+
+\subsection{Perfiles de usuarios}
+\vspace{0.3cm}
+\begin{table}[H]
+\label{tab:my-table-user}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{TÉCNICO}} \\ \hline
+\textbf{Representante}                         & Técnico.  \\ \hline
+\textbf{Descripción} &  Persona con conocimientos técnicos sobre los robots. Aplica los conocimientos técnicos en la configuración, mantenimiento, reparación y solución de problemas de estos. \\ \hline
+\textbf{Responsabilidades}                         &  • Incorporar o retirar robots de la flota \\
+ &  •	Definir el conjunto de tareas permitidas en los robots (Dentro de su tipo). \\
+ & •	Modificar características técnicas de los robots (Ej : Modo energía )  \\ 
+ & •	Asistir incidencias técnicas \\
+ \hline
+\textbf{Criterio de éxito}                         & Proporcionar un sistema que cubra sus responsabilidades de una forma simple.  \\ \hline
+\end{tabular}%
+
+\caption{Tabla Usuario_1}
+\end{table}
+
+\begin{table}[H]
+\label{tab:my-table-user}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{SANITARIO}} \\ \hline
+\textbf{Representante}                         & Sanitario.  \\ \hline
+\textbf{Descripción} &  Persona con conocimientos sobre tratamientos o cuidados aplicados a la salud de las personas. Identifica, realiza y requiere de actividades aplicadas en su práctica clínica. \\ \hline
+\textbf{Responsabilidades}                         &  •	Asignar tareas a los robots. \\
+ &  •	Fijar prioridad a las tareas. \\
+ &  •	Fijar tiempo de realización a las tareas \\ 
+ &  •	Modificar estado de tareas. \\
+ &  •	Revisar estado de los robots y tareas asociadas \\
+ \hline
+\textbf{Criterio de éxito}                         & Proporcionar un sistema que cubra sus responsabilidades de una forma simple.  \\ \hline
+\end{tabular}%
+
+\caption{Tabla Usuario_2}
+\end{table}
+
+\section{Funcionalidad del producto}
+El producto mejorará la organización de tareas de un conjunto de robots. Este implementará una app donde tenga una interfaz orientativa para el médico y así se obtenga una buena comunicación con los robots. 
+\newline
+
+
+\chapter{Requisitos funcionales}
+A continuación los requisitos funcionales desarrollados para la aplicación. Cada tabla corresponde a un requisito diferente cada requisito es nombrado por un identificador único, en nuestro caso se trata de "FR\_NúmeroRequisito" y cada fila de la tabla revela información adicional sobre el requisito en cuestión.
+\\
+
+\section{Requisitos funcionales}
+
+\subsection{FR 0}
+
+\begin{table}[H]
+    \label{tab:my-table}
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_0}} \\
+    \hline
+    \textbf{Descripción  }                      & El técnico podrá incorporar y eliminar robots  \\ \hline
+    \textbf{Prioridad}                          & Alta \\ \hline
+    \textbf{Riesgo}                          & Nulo \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo  \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico  \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    \caption{Requisito Funcional FR_0}
+\end{table}
+
+\subsection{FR 1}
+\begin{table}[H]
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_1}} \\
+    \hline
+    \textbf{Descripción  }                      & El técnico podrá definir el conjunto de tareas permitidas en los robots                                                                                            \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico                                                                                                 \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional FR_1}
+\end{table}
+
+\subsection{FR 2}
+\begin{table}[H]
+    
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_2}} \\
+    \hline
+    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la modificación de características técnicas de los robots                                                                                            \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de configuración al técnico.                                                                                                \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_2}
+\end{table}
+
+
+\subsection{FR 3}
+    \begin{table}[H]
+    
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_3}} \\
+    \hline
+    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la asistencia de problemas técnicos (texto)                                                                            \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de atención técnica a los sanitarios.                                                                                               \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_3}
+\end{table}
+
+\subsection{FR 4}
+\begin{table}[H]
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_4}} \\
+    \hline
+    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la monitorización de robots                                                                            \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico. La monitorización de los distintos robots es clave a la hora planificar o asignar tareas.                                                                                                \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_4}
+\end{table}
+
+\subsection{FR 5}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{FR_5}} \\
+        \hline
+        \textbf{Descripción  }                      &  El sanitario dispondrá de una herramienta de filtrado para los robots.                                                                       \\ \hline
+        \textbf{Prioridad}                          & Media                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    & Filtración de los robots según le conviene al clinico                         \\ \hline
+        \textbf{Razón}                   & Facilitar la navegación del sanitario                                                                                                                \\ \hline
+        \textbf{Padres}                               &  \\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito Funcional RF_5}
+\end{table}
+
+
+\subsection{FR 6}
+\begin{table}[H]
+
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_6}} \\
+    \hline
+    \textbf{Descripción  }                      &  El sanitario podrá añadir tareas desde cero o ya creadas a una cola.                                                                           \\ \hline
+    \textbf{Prioridad}                          & Máxima                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Máximo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Toda la aplicación gira entorno a la asignación de tareas del sanitario al robot.                                                                          \\ \hline
+    \textbf{Razón}                   & Al guardar las tareas en una cola tendremos organizadas las tareas a realizar.                                                                                              \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_6}
+\end{table}
+
+\subsection{FR 7}
+    \begin{table}[H]
+    
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_7}} \\
+    \hline
+    \textbf{Descripción  }                      & Las tareas tendrán diferentes niveles de prioridad(asignado por el sanitario), a más alta automáticamente se colocarán por encima de otras más triviales en la cola.                                                                            \\ \hline
+    \textbf{Prioridad}                          & Máxima                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Máximo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Que hayan tareas urgentes en lista de espera.                                                                          \\ \hline
+    \textbf{Razón}                   & Los robots tienen que hacer las tareas urgentes antes que las demás.                                                                                        \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_7}
+\end{table}
+
+
+
+\subsection{FR 8}
+\begin{table}[H]
+    
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_8}} \\
+    \hline
+    \textbf{Descripción  }                      & Las tareas de prioridad ‘Máxima’ interrumpirán la tarea que esté desempeñando el robot para el cumplimiento de la misma.                                                                          \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica del sistema.                                                                                               \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+\end{tabular}%
+
+\caption{Requisito Funcional RF_8}
+\end{table}
+
+\subsection{FR 9}
+    \begin{table}[H]
+    
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_9}} \\
+    \hline
+    \textbf{Descripción  }                      & Las tareas interrumpidas se reasignan/eliminan de la cola según su prioridad
+                                                                             \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica del sistema.                                                                                               \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_9}
+\end{table}
+
+\subsection{FR 10}
+\begin{table}[H]
+    \label{tab:my-table}
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_10}} \\
+    \hline
+    \textbf{Descripción  }                      &  La aplicación debe tener registro e inicio de sesión.                                                                       \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Alto                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & No saber a que funcionalidad dar acceso.                                                                \\ \hline
+    \textbf{Razón}                   & Debemos conocer en todo momento que usuarios acceden a la app.                                                                                             \\ \hline
+    \textbf{Padres}                               &  \\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_10}
+\end{table}
+
+\subsection{FR 11}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{FR_11}} \\
+        \hline
+        \textbf{Descripción  }                      &  Toda los datos que genere la app serán recogidos y almacenados.                                                                      \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  Perder información que puede ser valiosa o necesaria para la app.                                \\ \hline
+        \textbf{Razón}                   & Por motivos de seguridad guardaremos la información de quien ha tenido acceso a la app.                                                                                                                \\ \hline
+        \textbf{Padres}                               &  \\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito Funcional RF_11}
+\end{table}
+
+\subsection{FR 12}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{FR_12}} \\
+        \hline
+        \textbf{Descripción  }                      &  Debe haber un registro de todas las tareas hecha por cada robot                                              \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Bajo                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  Perder información que puede ser valiosa o necesaria para la app.                                \\ \hline
+        \textbf{Razón}                   & Por motivos de seguridad guardaremos la información de que ha hecho cada robot, en que momento y quien se lo ha ordenado.                                                                                                      \\ \hline
+        \textbf{Padres}                               &  \\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito Funcional RF_12}
+\end{table}
+
+\chapter{Requisitos no funcionales}
+
+\section{Requisitos de almacenamiento}
+
+\subsection{NFR 0}
+\begin{table}[H]
+    \label{tab:my-table}
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{NFR_0}} \\
+    \hline
+    \textbf{Descripción  }                      &  Se utilizarán herramientas de almacenamiento en la nube para guardar los datos de la app.                                                                            \\ \hline
+    \textbf{Prioridad}                          & Media                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Perder información valiosa.                                                                               \\ \hline
+    \textbf{Razón}                   & Los datos en la nube están más seguros que en local.                                                                                               \\ \hline
+    \textbf{Padres}                               &  FR_10\\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito No Funcional NRF_0}
+\end{table}
+
+\subsection{NFR 1}
+\begin{table}[H]
+    \label{tab:my-table}
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{NFR_1}} \\
+    \hline
+    \textbf{Descripción  }                      &  El tiempo de carga de página web deberá de ser menor a 2s                                 \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                             \\ \hline
+    \textbf{Riesgo}                          & Bajo                                                                                               \\ \hline
+    \textbf{Descripción del riesgo}                    & Incompatibilidad con características de diseño                                 \\ \hline
+    \textbf{Razón}                   & El tiempo de carga es fundamental en la experiencia de usuario                                                                                \\ \hline
+    \textbf{Padres}                               &  NFR_2\\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito No Funcional NRF_1}
+\end{table}
+
+\section{Requisitos de seguridad}
+
+\subsection{NFR 2}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{NFR_2}} \\
+        \hline
+        \textbf{Descripción  }                      &  A la hora del registro, el usuario debe especificar si es sanitario o técnico                                                                      \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Alto                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  De no ser así, no podríamos diferenciar entre clínico o técnico.                          \\ \hline
+        \textbf{Razón}                   & Ambos tipos de usuario podrían acceder a las funciones del otro.                                                                                                                       \\ \hline
+        \textbf{Padres}                               &  FR_9\\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito No Funcional NRF_2}
+\end{table}
+
+\subsection{NFR 3}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{NFR_3}} \\
+        \hline
+        \textbf{Descripción  }                      &  Tras un registro la contraseña sera encriptada para guardarla como un id único y no tener acceso a ella.                                                                      \\ \hline
+        \textbf{Prioridad}                          & Baja                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  Acceder a los datos privados de nuestros usuarios.                          \\ \hline
+        \textbf{Razón}                   & Para no tener en ningún momento acceso a las contraseñas de los usuarios.  \\ \hline
+        \textbf{Padres}                               &  FR_9\\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito No Funcional RNF_3}
+\end{table}
+
+
+\subsection{NFR 4}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{NFR_4}} \\
+        \hline
+        \textbf{Descripción  }                      &  El sistema deberá de mantener un registro de usuario/clave única.                                                                    \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Bajo                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  Funcionalidad de clave única proporcionada por la base de datos implementada                          \\ \hline
+        \textbf{Razón}                   & Controlar el acceso a cuentas, como la identidad única de los usuarios.                                                                                         \\ \hline
+        \textbf{Padres}                               &  FR_9\\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito No Funcional NFR_4}
+\end{table}
+
+\section{Requisitos de diseño}
+
+\subsection{NFR 5}
+\begin{table}[H]
+    \label{tab:my-table}
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{NFR_5}} \\
+    \hline
+    \textbf{Descripción  }                      &  La web debe tener un diseño accesible y simple.                                                                            \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Alto                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Que un sanitario sin ningún background tecnológico no sepa como trabajar con la app.                                                                               \\ \hline
+    \textbf{Razón}                   & La app debe de ser auto explicativa para que cualquier usuario sepa utilizarla.       \\ \hline
+    \textbf{Padres}                               &  FR_10\\  \hline
+    \end{tabular}%
+    
+    \caption{Requisito No Funcional NRF_5}
+\end{table}
+
+\subsection{NFR 6}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{NFR_6}} \\
+        \hline
+        \textbf{Descripción  }                      &  Según el tipo de usuario, la app tendrá una u otra interfaz.                                                                      \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  De no ser así, no podríamos diferenciar entre clínico o técnico.                          \\ \hline
+        \textbf{Razón}                   & Ambos tipos de usuario podrían acceder a las funciones del otro.                                                                                                                       \\ \hline
+        \textbf{Padres}                               &  FR_9\\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito No Funcional NFR_6}
+\end{table}
+
+\subsection{NFR 7}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{NFR_7}} \\
+        \hline
+        \textbf{Descripción  }                      &  El sistema debe posibilitar la creación de una tarea con x clicks desde la vista monitorización del usuario                                                                      \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Baja                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  Dificultad de crear lógica de procesos.                          \\ \hline
+        \textbf{Razón}                   & La creación de tareas de una forma 'rápida' es fundamental en la experiencia de usuario. Se tiene en cuenta que la creación de tareas es una función principal de la aplicación                                                                                        \\ \hline
+        \textbf{Padres}                               &  \\  \hline
+        \end{tabular}%
+        
+        \caption{Requisito No Funcional NFR_7}
+\end{table}
+
+\chapter{Diseño}
+\section{Diagrama IFML}
+
+\end{document}
