@@ -7,6 +7,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{subfiles}
+\usepackage{blindtext}
+
 
 \hypersetup{
     bookmarks=false,    % show bookmarks bar?
@@ -21,7 +23,7 @@
     urlcolor=purple,        % color of external links
     linktoc=page            % only page is linked
 }%
-\def\myversion{1.3}
+\def\myversion{2.3}
 \date{}
 %\title{%
 
@@ -69,9 +71,9 @@ Con el desarrollo de este proyecto perseguimos crear una aplicación web que com
 
 \section{Formato utilizado}
 
-Se ha decidido usar una tabla por requisito. En cada tabla se añadirá la descripción del requisito, la prioridad que tiene respecto a los demás, el riesgo de no cumplirse y una descripción del mismo, el motivo del requisito y los requisitos padres en caso de tener alguno. El motivo por el cual se ha decidido usar esta implementación es la sencillez de visualización tanto para los realizadores del proyecto como para el cliente a la hora de mostrarle estos requisitos. 
+Se ha decidido usar una tabla por requisito. En cada tabla se añadirá la descripción del requisito, la prioridad que tiene respecto a los demás, el riesgo de no cumplirse y una descripción del mismo, el motivo del requisito. Se implementa también una parte de criterios de aceptación para saber que el requisito ha sido implementado adecuadamente. Se utiliza la misma plantilla para FR y NFR, porque son requisitos como tal, y su estructura son parecidas. El motivo por el cual se ha decidido usar esta implementación es la sencillez de visualización tanto para los realizadores del proyecto como para el cliente a la hora de mostrarle estos requisitos, esto es más sencillo, debido a que los requisitos van a tener una estructura organizada y esquematizada. Cuando lo veamos ya sabemos directamente muchas funcionalidades del requisito.  
 
-Además, para la redacción de la memoria del proyecto, se ha utilizado Latex, concretamente para como editor de texto en este formato se ha usado Overleaf, un editor online en el que se pueden crear redacciones colaborativas y así, todos los integrantes del grupo puedan editar esta documento simultáneamente.Se ha utilizado una plantilla de overleaf preexistente, con su respectiva tipografía, formato de títulos, portada etc... . Otro motivo por el que hemos optado por Latex es que este se trata de un editor de texto plano y fácilmente portable a cualquier sistema operativo o herramienta de control de versiones por lo que en todo momento se podrán ver los cambios realizados.
+
 
 \chapter{Descripción de producto}
 El producto trata de una aplicación web orientada a la gestión de robots de un centro sanitario. Esta aplicación por parte del sanitario se usará para gestionar los robots y obtener 'feedback' sobre su estado. Por parte del técnico, modificará la plantilla de robots, definirá los posibles comportamientos y tratará con los errores de los mismos.
@@ -156,12 +158,12 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \hline
     \multicolumn{2}{|c|}{\textbf{FR_0}} \\
     \hline
-    \textbf{Descripción  }                      & El técnico podrá incorporar y eliminar robots  \\ \hline
+    \textbf{Descripción  }                      & El técnico podrá incorporar y eliminar usuarios de la apliación  \\ \hline
     \textbf{Prioridad}                          & Alta \\ \hline
     \textbf{Riesgo}                          & Nulo \\ \hline
     \textbf{Descripción del riesgo}                    & Nulo  \\ \hline
     \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico  \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+    \textbf{Criterio de aceptación}                    & El usuario nuevo aparece en la base de datos  \\ \hline
     \end{tabular}%
     \caption{Requisito Funcional FR_0}
 \end{table}
@@ -179,14 +181,16 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
     \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
     \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico                                                                                                 \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+    \textbf{Criterio de aceptación}                    & La tarea aparecerá en la vitsa de lista de tareas \\ \hline
+
     \end{tabular}%
     
     \caption{Requisito Funcional FR_1}
 \end{table}
 
+
 \subsection{FR 2}
-\begin{table}[H]
+    \begin{table}[H]
     
     \label{tab:my-table}
     
@@ -194,98 +198,99 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \hline
     \multicolumn{2}{|c|}{\textbf{FR_2}} \\
     \hline
-    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la modificación de características técnicas de los robots                                                                                            \\ \hline
+    \textbf{Descripción  }                      & El técnico puede ver la asistencias de problemas técnicos.                                                                             \\ \hline
     \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
     \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
     \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
-    \textbf{Razón}                   & Proporcionar funcionalidad de configuración al técnico.                                                                                                \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de atención técnica a los sanitarios.                                                                                               \\ \hline
+    \textbf{Criterio de aceptación}                    &  Las incidencias aparecen en la ventana de incidencias \\ \hline
     \end{tabular}%
     
     \caption{Requisito Funcional RF_2}
 \end{table}
 
-
 \subsection{FR 3}
-    \begin{table}[H]
-    
+\begin{table}[H]
     \label{tab:my-table}
     
     \begin{tabular}{|p{5cm}|p{11cm}|}
     \hline
     \multicolumn{2}{|c|}{\textbf{FR_3}} \\
     \hline
-    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la asistencia de problemas técnicos (texto)                                                                            \\ \hline
+    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la monitorización de robots                                                                            \\ \hline
     \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
     \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
     \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
-    \textbf{Razón}                   & Proporcionar funcionalidad de atención técnica a los sanitarios.                                                                                               \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico. La monitorización de los distintos robots es clave a la hora planificar o asignar tareas.                                                                                                \\ \hline
+    \textbf{Criterio de aceptación}                    &   \\ \hline
     \end{tabular}%
     
     \caption{Requisito Funcional RF_3}
 \end{table}
 
 \subsection{FR 4}
-\begin{table}[H]
-    \label{tab:my-table}
-    
-    \begin{tabular}{|p{5cm}|p{11cm}|}
-    \hline
-    \multicolumn{2}{|c|}{\textbf{FR_4}} \\
-    \hline
-    \textbf{Descripción  }                      & El sistema debe posibilitar al técnico la monitorización de robots                                                                            \\ \hline
-    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
-    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
-    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
-    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica al técnico. La monitorización de los distintos robots es clave a la hora planificar o asignar tareas.                                                                                                \\ \hline
-    \textbf{Padres}                               &  \\  \hline
-    \end{tabular}%
-    
-    \caption{Requisito Funcional RF_4}
-\end{table}
-
-\subsection{FR 5}
     \begin{table}[H]
         \label{tab:my-table}
         \begin{tabular}{|p{5cm}|p{11cm}|}
         \hline
-        \multicolumn{2}{|c|}{\textbf{FR_5}} \\
+        \multicolumn{2}{|c|}{\textbf{FR_4}} \\
         \hline
         \textbf{Descripción  }                      &  El sanitario dispondrá de una herramienta de filtrado para los robots.                                                                       \\ \hline
         \textbf{Prioridad}                          & Media                                                                                              \\ \hline
-        \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
-        \textbf{Descripción del riesgo}                    & Filtración de los robots según le conviene al clinico                         \\ \hline
+        \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    & Filtración de los robots de manera desordenada o que esten en un estado que no es el correspondiente                        \\ \hline
         \textbf{Razón}                   & Facilitar la navegación del sanitario                                                                                                                \\ \hline
-        \textbf{Padres}                               &  \\  \hline
+        \textbf{Criterio de aceptación}                    & El filtrado será correspondiente a cada estado del robot.  \\ \hline
         \end{tabular}%
         
-        \caption{Requisito Funcional RF_5}
+        \caption{Requisito Funcional RF_4}
 \end{table}
 
 
-\subsection{FR 6}
+\subsection{FR 5}
 \begin{table}[H]
 
+    \label{tab:my-table}
+    
+    \begin{tabular}{|p{5cm}|p{11cm}|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{FR_5}} \\
+    \hline
+    \textbf{Descripción  }                      &  El sanitario podrá asignar tareas.                                                                           \\ \hline
+    \textbf{Prioridad}                          & Máxima                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Máximo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Toda la aplicación gira entorno a la asignación de tareas del sanitario al robot.                                                                          \\ \hline
+    \textbf{Razón}                   & Al guardar las tareas en una cola tendremos organizadas las tareas a realizar.                                                                                              \\ \hline
+    \textbf{Criterio de aceptación}                    & Asignación de tarea correcta y aparezca en la lista de tareas del robot.  \\ \hline
+    \end{tabular}%
+    
+    \caption{Requisito Funcional RF_5}
+\end{table}
+
+\subsection{FR 6}
+    \begin{table}[H]
+    
     \label{tab:my-table}
     
     \begin{tabular}{|p{5cm}|p{11cm}|}
     \hline
     \multicolumn{2}{|c|}{\textbf{FR_6}} \\
     \hline
-    \textbf{Descripción  }                      &  El sanitario podrá añadir tareas desde cero o ya creadas a una cola.                                                                           \\ \hline
+    \textbf{Descripción  }                      & El sanitario tendrá la posibilidad de dar diferentes niveles de prioridad.                                                                            \\ \hline
     \textbf{Prioridad}                          & Máxima                                                                                              \\ \hline
     \textbf{Riesgo}                          & Máximo                                                                                                \\ \hline
-    \textbf{Descripción del riesgo}                    & Toda la aplicación gira entorno a la asignación de tareas del sanitario al robot.                                                                          \\ \hline
-    \textbf{Razón}                   & Al guardar las tareas en una cola tendremos organizadas las tareas a realizar.                                                                                              \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+    \textbf{Descripción del riesgo}                    & Que hayan tareas urgentes en lista de espera y no se realicen antes que las otras.                                                                           \\ \hline
+    \textbf{Razón}                   & Los robots tienen que hacer las tareas urgentes antes que las demás.A más alta automáticamente se colocarán por encima de otras más triviales en la cola.                                                                                        \\ \hline
+     \textbf{Criterio de aceptación}                    & Asignación de tarea correcta y aparezca en la lista de tareas del robot como la primera.  \\ \hline
     \end{tabular}%
     
     \caption{Requisito Funcional RF_6}
 \end{table}
 
+
+
 \subsection{FR 7}
-    \begin{table}[H]
+\begin{table}[H]
     
     \label{tab:my-table}
     
@@ -293,21 +298,19 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \hline
     \multicolumn{2}{|c|}{\textbf{FR_7}} \\
     \hline
-    \textbf{Descripción  }                      & Las tareas tendrán diferentes niveles de prioridad(asignado por el sanitario), a más alta automáticamente se colocarán por encima de otras más triviales en la cola.                                                                            \\ \hline
-    \textbf{Prioridad}                          & Máxima                                                                                              \\ \hline
-    \textbf{Riesgo}                          & Máximo                                                                                                \\ \hline
-    \textbf{Descripción del riesgo}                    & Que hayan tareas urgentes en lista de espera.                                                                          \\ \hline
-    \textbf{Razón}                   & Los robots tienen que hacer las tareas urgentes antes que las demás.                                                                                        \\ \hline
-    \textbf{Padres}                               &  \\  \hline
-    \end{tabular}%
-    
-    \caption{Requisito Funcional RF_7}
+    \textbf{Descripción  }                      & Las tareas de prioridad ‘Máxima’ interrumpirán la tarea que esté desempeñando el robot para el cumplimiento de la misma.                                                                          \\ \hline
+    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica del sistema.                                                                                               \\ \hline
+     \textbf{Criterio de aceptación}                    & La tarea de urgencia maxima aparece la primera en el listado de tareas.  \\ \hline
+\end{tabular}%
+
+\caption{Requisito Funcional RF_7}
 \end{table}
 
-
-
 \subsection{FR 8}
-\begin{table}[H]
+    \begin{table}[H]
     
     \label{tab:my-table}
     
@@ -315,54 +318,52 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \hline
     \multicolumn{2}{|c|}{\textbf{FR_8}} \\
     \hline
-    \textbf{Descripción  }                      & Las tareas de prioridad ‘Máxima’ interrumpirán la tarea que esté desempeñando el robot para el cumplimiento de la misma.                                                                          \\ \hline
-    \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
-    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
-    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
-    \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica del sistema.                                                                                               \\ \hline
-    \textbf{Padres}                               &  \\  \hline
-\end{tabular}%
-
-\caption{Requisito Funcional RF_8}
-\end{table}
-
-\subsection{FR 9}
-    \begin{table}[H]
-    
-    \label{tab:my-table}
-    
-    \begin{tabular}{|p{5cm}|p{11cm}|}
-    \hline
-    \multicolumn{2}{|c|}{\textbf{FR_9}} \\
-    \hline
     \textbf{Descripción  }                      & Las tareas interrumpidas se reasignan/eliminan de la cola según su prioridad
                                                                              \\ \hline
     \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
-    \textbf{Riesgo}                          & Nulo                                                                                                \\ \hline
-    \textbf{Descripción del riesgo}                    & Nulo                                                                               \\ \hline
+    \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+    \textbf{Descripción del riesgo}                    & Que no aparezcan en la lista o que sigan apareciendo. Haría que entrará en bucle la lista de tareas.                                                                              \\ \hline
     \textbf{Razón}                   & Proporcionar funcionalidad de gestión básica del sistema.                                                                                               \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+     \textbf{Criterio de aceptación}                    & Las tareas interrumpidas se hayan eliminado del historial del robot.  \\ \hline
     \end{tabular}%
     
-    \caption{Requisito Funcional RF_9}
+    \caption{Requisito Funcional RF_8}
 \end{table}
 
-\subsection{FR 10}
+\subsection{FR 9}
 \begin{table}[H]
     \label{tab:my-table}
     \begin{tabular}{|p{5cm}|p{11cm}|}
     \hline
-    \multicolumn{2}{|c|}{\textbf{FR_10}} \\
+    \multicolumn{2}{|c|}{\textbf{FR_9}} \\
     \hline
     \textbf{Descripción  }                      &  La aplicación debe tener registro e inicio de sesión.                                                                       \\ \hline
     \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
     \textbf{Riesgo}                          & Alto                                                                                                \\ \hline
     \textbf{Descripción del riesgo}                    & No saber a que funcionalidad dar acceso.                                                                \\ \hline
     \textbf{Razón}                   & Debemos conocer en todo momento que usuarios acceden a la app.                                                                                             \\ \hline
-    \textbf{Padres}                               &  \\  \hline
+     \textbf{Criterio de aceptación}                    & El usuario entrará en su interfaz correspondiente.  \\ \hline
     \end{tabular}%
     
-    \caption{Requisito Funcional RF_10}
+    \caption{Requisito Funcional RF_9}
+\end{table}
+
+\subsection{FR 10}
+    \begin{table}[H]
+        \label{tab:my-table}
+        \begin{tabular}{|p{5cm}|p{11cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{FR_10}} \\
+        \hline
+        \textbf{Descripción  }                      &  Toda los datos que genere la app serán recogidos y almacenados.                                                                      \\ \hline
+        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
+        \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
+        \textbf{Descripción del riesgo}                    &  Perder información que puede ser valiosa o necesaria para la app.                                \\ \hline
+        \textbf{Razón}                   & Por motivos de seguridad guardaremos la información de quien ha tenido acceso a la app.                                                                                                                \\ \hline
+         \textbf{Criterio de aceptación}                    & Asignación de tarea correcta y aparezca en la lista de tareas del robot.  \\ \hline
+        \end{tabular}%
+        
+        \caption{Requisito Funcional RF_10}
 \end{table}
 
 \subsection{FR 11}
@@ -372,33 +373,15 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
         \hline
         \multicolumn{2}{|c|}{\textbf{FR_11}} \\
         \hline
-        \textbf{Descripción  }                      &  Toda los datos que genere la app serán recogidos y almacenados.                                                                      \\ \hline
-        \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
-        \textbf{Riesgo}                          & Medio                                                                                                \\ \hline
-        \textbf{Descripción del riesgo}                    &  Perder información que puede ser valiosa o necesaria para la app.                                \\ \hline
-        \textbf{Razón}                   & Por motivos de seguridad guardaremos la información de quien ha tenido acceso a la app.                                                                                                                \\ \hline
-        \textbf{Padres}                               &  \\  \hline
-        \end{tabular}%
-        
-        \caption{Requisito Funcional RF_11}
-\end{table}
-
-\subsection{FR 12}
-    \begin{table}[H]
-        \label{tab:my-table}
-        \begin{tabular}{|p{5cm}|p{11cm}|}
-        \hline
-        \multicolumn{2}{|c|}{\textbf{FR_12}} \\
-        \hline
         \textbf{Descripción  }                      &  Debe haber un registro de todas las tareas hecha por cada robot                                              \\ \hline
         \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
         \textbf{Riesgo}                          & Bajo                                                                                                \\ \hline
         \textbf{Descripción del riesgo}                    &  Perder información que puede ser valiosa o necesaria para la app.                                \\ \hline
         \textbf{Razón}                   & Por motivos de seguridad guardaremos la información de que ha hecho cada robot, en que momento y quien se lo ha ordenado.                                                                                                      \\ \hline
-        \textbf{Padres}                               &  \\  \hline
+         \textbf{Criterio de aceptación}                    & En el listado de tareas tanto para el sanitario como para el técnico aparezcan todas las tareas propuestas.  \\ \hline
         \end{tabular}%
         
-        \caption{Requisito Funcional RF_12}
+        \caption{Requisito Funcional RF_11}
 \end{table}
 
 \chapter{Requisitos no funcionales}
@@ -418,6 +401,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \textbf{Descripción del riesgo}                    & Perder información valiosa.                                                                               \\ \hline
     \textbf{Razón}                   & Los datos en la nube están más seguros que en local.                                                                                               \\ \hline
     \textbf{Padres}                               &  FR_10\\  \hline
+     \textbf{Criterio de aceptación}                    & Todos los datos apareceran en la nube  \\ \hline
     \end{tabular}%
     
     \caption{Requisito No Funcional NRF_0}
@@ -436,6 +420,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \textbf{Descripción del riesgo}                    & Incompatibilidad con características de diseño                                 \\ \hline
     \textbf{Razón}                   & El tiempo de carga es fundamental en la experiencia de usuario                                                                                \\ \hline
     \textbf{Padres}                               &  NFR_2\\  \hline
+     \textbf{Criterio de aceptación}                    & El tiempo estimado fue de 2 segundos o menos.  \\ \hline
     \end{tabular}%
     
     \caption{Requisito No Funcional NRF_1}
@@ -456,6 +441,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
         \textbf{Descripción del riesgo}                    &  De no ser así, no podríamos diferenciar entre clínico o técnico.                          \\ \hline
         \textbf{Razón}                   & Ambos tipos de usuario podrían acceder a las funciones del otro.                                                                                                                       \\ \hline
         \textbf{Padres}                               &  FR_9\\  \hline
+         \textbf{Criterio de aceptación}                    & El usuario si tiene acceso correspondiente a su cargo le saldrá la interfaz adecuada  \\ \hline
         \end{tabular}%
         
         \caption{Requisito No Funcional NRF_2}
@@ -474,6 +460,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
         \textbf{Descripción del riesgo}                    &  Acceder a los datos privados de nuestros usuarios.                          \\ \hline
         \textbf{Razón}                   & Para no tener en ningún momento acceso a las contraseñas de los usuarios.  \\ \hline
         \textbf{Padres}                               &  FR_9\\  \hline
+         \textbf{Criterio de aceptación}                    & Aviso de contraseña encriptada  \\ \hline
         \end{tabular}%
         
         \caption{Requisito No Funcional RNF_3}
@@ -493,6 +480,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
         \textbf{Descripción del riesgo}                    &  Funcionalidad de clave única proporcionada por la base de datos implementada                          \\ \hline
         \textbf{Razón}                   & Controlar el acceso a cuentas, como la identidad única de los usuarios.                                                                                         \\ \hline
         \textbf{Padres}                               &  FR_9\\  \hline
+         \textbf{Criterio de aceptación}                    & Si el técnico añade un usuario le saldrá un aviso de que el usuario no existe en la base de datos, y podrá utilizar ese ID.  \\ \hline
         \end{tabular}%
         
         \caption{Requisito No Funcional NFR_4}
@@ -513,6 +501,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
     \textbf{Descripción del riesgo}                    & Que un sanitario sin ningún background tecnológico no sepa como trabajar con la app.                                                                               \\ \hline
     \textbf{Razón}                   & La app debe de ser auto explicativa para que cualquier usuario sepa utilizarla.       \\ \hline
     \textbf{Padres}                               &  FR_10\\  \hline
+     \textbf{Criterio de aceptación}                    & La buena facilidad de manjera la aplicación.  \\ \hline
     \end{tabular}%
     
     \caption{Requisito No Funcional NRF_5}
@@ -531,6 +520,7 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
         \textbf{Descripción del riesgo}                    &  De no ser así, no podríamos diferenciar entre clínico o técnico.                          \\ \hline
         \textbf{Razón}                   & Ambos tipos de usuario podrían acceder a las funciones del otro.                                                                                                                       \\ \hline
         \textbf{Padres}                               &  FR_9\\  \hline
+         \textbf{Criterio de aceptación}                    & La interfaz correspondiente a cada usuario.  \\ \hline
         \end{tabular}%
         
         \caption{Requisito No Funcional NFR_6}
@@ -543,18 +533,134 @@ A continuación los requisitos funcionales desarrollados para la aplicación. Ca
         \hline
         \multicolumn{2}{|c|}{\textbf{NFR_7}} \\
         \hline
-        \textbf{Descripción  }                      &  El sistema debe posibilitar la creación de una tarea con x clicks desde la vista monitorización del usuario                                                                      \\ \hline
+        \textbf{Descripción  }                      &  El sistema debe posibilitar la creación de una tarea con X clicks desde la vista monitorización del usuario                                                                      \\ \hline
         \textbf{Prioridad}                          & Alta                                                                                              \\ \hline
         \textbf{Riesgo}                          & Baja                                                                                                \\ \hline
         \textbf{Descripción del riesgo}                    &  Dificultad de crear lógica de procesos.                          \\ \hline
         \textbf{Razón}                   & La creación de tareas de una forma 'rápida' es fundamental en la experiencia de usuario. Se tiene en cuenta que la creación de tareas es una función principal de la aplicación                                                                                        \\ \hline
-        \textbf{Padres}                               &  \\  \hline
+         \textbf{Criterio de aceptación}                    & Asignación de tarea correcta y fácil.  \\ \hline
         \end{tabular}%
         
         \caption{Requisito No Funcional NFR_7}
 \end{table}
 
 \chapter{Diseño}
-\section{Diagrama IFML}
+
+El modelado web es una rama de la ingeniería web que aborda los problemas específicos relacionado con el diseño y desarrollo. En particular, se centra en el proceso de documentar un diseño de un sistema software complejo en un diagrama de flujo de estados de fácil comprensión utilizando texto y símbolos para representar la forma en la que el usuario accederá a la aplicación. Encontramos varios enfoques para el modelado web:
+
+\begin{itemize}
+    \item Modelo de procesos: Es una expresión abstracta de los procesos principales de un sistema se representa de manera secuencial.
+    \item Diagramas IFML: Representa los elementos de la interfaz gráfica de la aplicación así como la forma en que el usuario pasa de un elemento a otro.
+    \item Modelo  de contenidos:  Proporcionan una visión orientada a la ejecución, dan al desarrollador información a nivel de sistema.
+\end{itemize}
+
+Para tener una idea de como íbamos a realizar los diferentes modelos utilizamos una herramienta de dibujo para crear un boceto en el que mostramos de forma simple y mediante símbolos lo que contendrán en un futuro las diferentes vistas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.67\textwidth]{images/boceto_diseño.jpeg}
+	\caption{Boceto inicial}
+	\label{fig:example1}
+\end{figure}
+
+\section{Modelado de procesos}
+
+El modelado de procesos es una expresión abstracta de los principales procesos de un sistema, y se suelen representar de manera secuencial. En los procesos se describe en que orden un grupo de objetos funcionan entre sí son utilizados para comprender mejor los requisitos de un sistema nuevo que se implemente o un proceso existente ya que nos permite visualizar de forma gráfica como se realizaran diferentes funcionalidades de la web. \\
+\\
+Dado que nuestra app presenta dos tipos de usuarios muy diferenciados hemos creado un proceso para cada uno de ellos en los que se muestra todas las opciones que tiene disponible y sus funcionalidades.\\
+\\
+
+\subsection{Técnico}
+
+Cuando el usuario entra a la app web, el usuario se encuentra un login procede a poner usuario y contraseña, se confirma que el usuario está en la base de datos y entra a la interfaz correspondiente. El usuario puede volver al login o ir a lista de usuarios o tareas, donde desde el botón de usuario puede eliminar o añadir, y en la lista puede añadir y ver. Una vez realizada las funciones, se actualiza en la base de datos se confirma y se vuelve a la interfaz del técnico.\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth ]{images/procesos_tecnico.jpeg}
+	\caption{Diagrama de procesos del técnico}
+	\label{fig:example1}
+\end{figure}\\
+
+
+\subsection{Médico}
+
+Al igual que para el técnico, el médico al acceder a la web tiene un inicio de sesión, donde deberá introducir sus credenciales que serán comprobadas en la base de datos. En caso de éxito podrá acceder a la interfaz y sino seguirá en la pestaña de login. Una vez haya accedido a la interfaz de la app, podrá elegir entre diferentes opciones, asignar tareas, notificar una incidencia sobre algún robot, ver la lista de robots o cerrar sesión si así lo desea. En caso de consultar la lista de robots, podrá acceder a una nueva vista con toda la información el robot elegido. En todo momento tras cada vista se harán consultas sobre la base de datos para mostrar información por pantalla o se guardará en la base de datos las incidencias o tareas asignadas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/medico.drawio.png}
+	\caption{Diagrama de procesos del médico}
+	\label{fig:example1}
+\end{figure}
+
+\section{Diagramas IFML}
+
+El lenguaje de \textbf{modelado de flujo de interacción} (IFML) incluye un conjunto de notaciones gráficas para crear modelos visuales de interacciones de usuario y comportamiento de front-end en sistemas de software. \\
+\\
+Los modelos IFML constan de uno o más contenedores de vista. Estos pueden incluso abarcar otro contenedor de ser necesario, las vistas denotan el contenido estático o dinámico de la página así como los elementos de interfaz para la entrada de datos. Tanto los contenedores como los componentes de una vista se pueden asociar entre si con eventos. Los eventos son situaciones que afectan al estado de la página, la forma de relacionar una vista con una acción es mediante los flujos de navegación que son flechas que nos indican el sentido del flujo.
+
+Algunos beneficios que aporta el desarrollo en IFML:
+
+\begin{itemize}
+    \item Permite abordar el modelado desde diferentes perspectivas como son: interfaz, interacción y gestión de eventos.
+    \item Aísla los problemas de implementación de front-end con el diseño permitiendo obtener un concepto general del mismo sin preocupaciones.
+    \item Mejora la comunicación del diseño de la interfaz de usuario con las partes interesadas no técnicas.
+\end{itemize}
+
+\subsection{Técnico} 
+
+Después de iniciar sesión con la cuenta del técnico accedemos a la su interfaz. Desde esta vista podemos elegir entre tres acciones, cada una representada por un botón diferente.La primera opción sería el botón "Incidencias", el cual nos lleva a una nueva vista donde nos saldrá si hay alguna incidencia con algún robot y sus detalles. El siguiente botón que tenemos en la vista principal es "Usuario", este también nos redirige a otra vista donde nos saldrá una lista con los usuarios registrados en el sistema. Desde esta lista podremos eliminar algún usuario existente o registrar algunos nuevos. Para ello usaríamos el botón "UsuarioNuevo" y se nos abriría un formulario donde se introducen los datos para iniciar sesión del nuevo usuario.
+La última funcionalidad es "Lista de tareas", este botón nos carga una nueva vista donde veremos una lista con todas las tareas definidas que pueden realizar los robots. Desde esta vista podemos añadir una tarea mediante el formulario que se despliega o pinchar sobre una ya existente, lo que nos llevaría a otra ventana con la tarea elegida y su información.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/IMFL_tecnico.drawio.png}
+	\caption{Diagrama IFML médico}
+	\label{fig:example1}
+\end{figure}
+
+\newpage
+
+\subsection{Médico} 
+
+Tras hacer login con el usuario y la contraseña del médico accederemos directamente a su interfaz correspondiente. Está es la vista general del médico y en ella aparecen diversos botones, cada botón realiza una función diferente, esto lo podemos observar en el diagrama IFML, dentro del contenedor de interfaz encontramos una \textit{<<List>> ActionList}.Del contenedor salen diferentes flujos de navegación. Leyendo el diagrama de izquierda a derecha la primera funcionalidad de la interfaz de médico que vemos es la de las incidencias. Accedemos a está tras pulsar el botón de enviar incidencias, la vista de las incidencias posee un textbox en el cual el usuario podrá escribir cualquier mensaje que quiera que vea el técnico es por eso que debajo del textbox aparecen dos botones de evento, uno envía el mensaje a la vista del técnico y el otro cancela el proceso devolviéndonos a la interfaz anterior. La segunda funcionalidad es la de asignación de tareas mediante un formulario que aparecerá por pantalla el médico podrá asignar tareas tras asignar o cancelar una tarea volveremos a la interfaz anterior. Por último tenemos la lista de robots donde podremos pinchar en cualquiera de ellos para ver una descripción general de las características del robot.\\
+\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/ifml_medico.drawio.png}
+	\caption{Diagrama IFML técnico}
+	\label{fig:example1}
+\end{figure}
+
+
+\newpage
+\section{Modelado de Contenidos}
+En el modelado de contenidos se representa la estructura, el comportamiento y relaciones estáticas de cada uno de los objetos del sistema. \\ \\
+El modelo de contenidos esta formado principalmente por los siguientes elementos: \textbf{clases, relaciones e interfaces.} 
+\begin{itemize}
+    \item Las clases representan entidades u objetos del sistema y tienen atributos y métodos asociados que las definen.
+    \item Las relaciones representan como se relacionan los objetos del sistema. Las propiedades definen las relaciones son la multiplicidad(número de elementos que participan en la relación) y el nombre de asociación.
+    \item Las interfaces son definidas por una serie de atributos, funciones y obligaciones. Toda clase asociada a una interfaz debe de cumplir con todas aquellas funciones y atributos incluidos en esta.
+\end{itemize}  
+\vspace{1.5cm}
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.75\textwidth]{{images/diagrama-logico-clases.drawio.png}}
+	\caption{Modelo de contenidos}
+	\label{fig:example1}
+\end{figure}
+
+\subsection{Descripción de clases}
+
+\begin{itemize}
+
+    \item \textbf{Clase Usuario:}  Aquellas personas que van hacer uso de la web. Pueden ser médicos o técnicos. 
+    \item \textbf{Clase Médico:} Un tipo de usuario. Es el encargado de asignar tareas a los robots y en el caso de incidencias con las plataforma, comunicárselas al técnico. 
+    \item \textbf{Clase Técnico:} Un tipo de usuario. Es el encargado de añadir tareas a los robots y atender las incidencias comunicadas por los médicos. 
+    \item \textbf{Clase Incidencia:} Modela las incidencias registradas por lo médicos. Dicho objeto almacenas las observaciones realizadas por lo médicos y técnicos.
+    \item \textbf{Clase Tarea:} Modela las tareas asignadas y añadidas por los médicos y técnicos respectivamente. Una tarea solo puede ser asignada por un médico. A la vez una tarea solo puede ser añadida por un técnico. Todas las tareas tendrán asignadas un robot que la realice. Una tarea no puede existir sin un técnico que previamente la halla añadido y un robot asociado.
+     \item \textbf{Clase Robot:} Modela los robots de la plataforma. Los robots pueden realizar un tipo de tarea.
+\end{itemize}
 
 \end{document}
