@@ -37,5 +37,11 @@
 }
 
 .texto{
-    color: rgb(100, 100, 100);
+    color: rgb(0, 0, 0);
+    font-size: 60px;
+}
+
+.texto2{
+    color: rgb(0, 145, 77);
+    font-size: 50px;
 }
