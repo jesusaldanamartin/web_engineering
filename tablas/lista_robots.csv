@@ -1,0 +1,7 @@
+Nombre;Descripcion;Estado
+Robot1;Transporte;Activo
+Robot2;Teleasistencia;Activo
+Robot3;Desinfeccion;Activo
+Robot4;;En espera
+Robot5;;Disponible
+Robot6;;Disponible

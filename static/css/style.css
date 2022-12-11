@@ -45,3 +45,12 @@
     color: rgb(0, 145, 77);
     font-size: 50px;
 }
+
+.my_black{
+    color: rgb(0, 0, 0);
+}
+
+.padd{
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
