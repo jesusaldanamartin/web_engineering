@@ -5,7 +5,7 @@ from datetime import datetime
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
-from sqlalchemy.sql import exists
+from sqlalchemy.sql import exists, select
 from flask_bootstrap import Bootstrap
 
 
@@ -28,7 +28,7 @@ class Users(db.Model):
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return '<Email %r>' % self.email
+        return self.status
 
 class Admin(db.Model):
     __tablename__ = 'Administrators'
@@ -78,16 +78,19 @@ def login():
 
         user_exists = db.session.query(exists().where(Users.name == username)).scalar()
         password_exists = db.session.query(exists().where(Users.password == password)).scalar()
-        is_admin = db.session.query(exists().where(Users.status == status)).scalar()
+        #is_admin = db.session.query(exists().where(Users.status == status)).scalar()
 
+        person = select(Users).where(Users.name == username, Users.password == password)
+        get_status = db.session.execute(person).all()
+        
+        print(person)
+        print(str(get_status[0][0]))
         print(user_exists)
         print(password_exists)
-        print(is_admin)
 
 
         if (user_exists and password_exists):
-            print("SI")
-            if (is_admin):
+            if (str(get_status[0][0]) == "admin"):
                 return redirect('/admin')
             else:
                 return redirect('/doctor')
