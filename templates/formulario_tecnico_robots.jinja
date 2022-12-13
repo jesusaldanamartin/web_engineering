@@ -10,14 +10,13 @@
 <body class="bg">
     <fieldset class="main-container row p-5 mx-0 justify-content-center align-self-center">
         <div class="main-container row p-5 mx-0 justify-content-center align-self-center">
-            <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Formulario Usuarios</h1>
+            <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Formulario Robots</h1>
             <form class="main-container row p-5 mx-0 justify-content-center align-self-center" method="post"
-                name="formulario_lista_tareas">
+                name="formulario_lista_robots">
 
                 <div class="card">
                     <div class="card-body py-5 px-md-5">
-                        <form class="form_formulario_tecnico_usuario" action="/admin/formularioUsuarios" method="POST">
-
+                        <form class="form_formulario_tecnico_robots" action="/admin/formularioRobots" method="POST">
                             <!-- ID input -->
                             <div class="form-group row mb-4">
                                 <label for="id" class="col-sm-2 col-form-label">Id</label>
@@ -26,40 +25,33 @@
                                 </div>
                             </div>
 
-                            <!-- NombreUsuario input -->
+                            <!-- NombreRobots input -->
                             <div class="form-group row mb-4">
-                                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                <label for="name" class="col-sm-2 col-form-label">Nombre Robot</label>
                                 <div class="col-sm-10">
-                                    <input type="name" class="form-control" id="name" name="name" placeholder="Name">
-                                </div>
-                            </div>
-                            <!-- Email input -->
-                             <div class="form-group row mb-4">
-                                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    <input type="name" class="form-control" id="name" name=name placeholder="Nombre Robot">
                                 </div>
                             </div>
 
-                             <!-- password input -->
+                            <!-- IDTareas input -->
                              <div class="form-group row mb-4">
-                                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                <label for="tipo" class="col-sm-2 col-form-label">ID tarea asociada</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    <input type="id_Tareas" class="form-control" id="id_Tareas" name="id_Tareas" placeholder="ID Tarea">
                                 </div>
                             </div>
 
-                             <!-- Status input -->
+                            <!-- TipoTareas input -->
                              <div class="form-group row mb-4">
-                                <label for="status" class="col-sm-2 col-form-label">Status</label>
+                                <label for="tipoTarea" class="col-sm-2 col-form-label">Tipo de tarea</label>
                                 <div class="col-sm-10">
-                                    <input type="status" class="form-control" id="status" name="status" placeholder="Status">
+                                    <input type="tipoTarea" class="form-control" id="tipoTarea" name="tipoTarea" placeholder="Tipos de tareas">
                                 </div>
                             </div>
 
-                            <!-- Enviar Usuario button -->
+                            <!-- Enviar Tarea button -->
                             <button type="submit" class="btn btn-block mb-4 bot_inicio">
-                                Crear Usuario
+                                Crear Tarea
                             </button>
                             <!--Limpiar Tarea button -->
                             <button type="submit" class="btn btn-block mb-4 bot_inicio">
