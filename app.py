@@ -62,7 +62,7 @@ class Robots(db.Model):
     name = db.Column(db.String(150), nullable=False)
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id), primary_key= True)
     tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea), primary_key= True)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} date={self.date}>"
@@ -167,9 +167,52 @@ def tarea():
         
     return render_template('formulario_tecnico_tareas.jinja')
 
-@app.route("/admin/formularioUsuarios")
+@app.route("/admin/formularioUsuarios" , methods=["GET","POST"])
 def usuario():
+    if request.method == 'POST':
+
+        id_usuario = request.form['id']
+        name_usuario = request.form['name']
+        email_usuario = request.form['email']
+        password_usuario = request.form['password']
+        status_usuario = request.form['status']
+
+
+        id_exists = db.session.query(exists().where(Users.id == id_usuario)).scalar()
+        if (id_exists):
+            messagebox.showinfo(message="El usuario ya existe, prueba otro ID", title="ERROR CREANDO USUARIO")
+            return render_template('formulario_tecnico_usuario.jinja')
+
+        else: 
+            usuario = Users(id = id_usuario, name = name_usuario, email = email_usuario, password = password_usuario, status = status_usuario)
+            db.session.add(usuario)
+            db.session.commit()
+            return render_template('formulario_tecnico_usuario.jinja')
+        
     return render_template('formulario_tecnico_usuario.jinja')
+
+
+@app.route("/admin/formularioRobots", methods=["GET","POST"])
+def robot_tecnico():
+
+    if request.method == 'POST':
+        id_robot = request.form['id']
+        name_robot=  request.form['name']
+        id_tarea= request.form['id_Tareas']
+        tipo_tarea = request.form['tipoTarea']
+
+        robot_exists = db.session.query(exists().where(Robots.id == id_robot)).scalar()
+        if (robot_exists):
+            messagebox.showinfo(message="La tarea ya existe, prueba otro ID", title="ERROR CREANDO ROBOT")
+            return render_template('formulario_tecnico_robots.jinja')
+
+        else: 
+            robot = Robots(id = id_robot,name=name_robot, id_Tareas=id_tarea, tipoTarea=tipo_tarea)
+            db.session.add(robot)
+            db.session.commit()
+            return render_template('formulario_tecnico_robots.jinja')
+
+    return render_template('formulario_tecnico_robots.jinja')
 
 if __name__ == "__main__":
     app.app_context().push()
