@@ -21,16 +21,7 @@
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
                     officia deserunt mollit anim id est laborum.
                 </p>
-                 <div class="text-left margen padd">
-                  <div class="dropdown">
-                    <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="/admin/formularioUsuarios">Registrar nuevo usuario</a>
-                      <a class="dropdown-item" href="#">Editar</a>
-                      <a class="dropdown-item" href="#">Eliminar usuario</a>
-                    </div>
-                </div>
+
                 <div class="text-left margen">
                     <button type="button" class="btn btn-light btn-lg editar">- Editar -</button> BLA BLA BLA BLA
                 </div>
@@ -95,12 +86,15 @@
                     <tbody>
                       {% for tablas in acciones %}
                       <tr>
-                        <td>{{tablas.id_robot}}</td>
+                            <td>{{tablas.id_robot}}</td>
                             <td>{{tablas.name_robot}}</td>
                             <td>{{tablas.id_Tareas}}</td>
                             <td>{{tablas.realizando_tarea}}</td>
                             <td>{{tablas.tipoTarea}}</td>
                             <td>{{tablas.date}}</td>
+                            <td> 
+                              <a href="/edit/{{tablas.id_robot}}">Edit</a>
+                            </td>
                       </tr>
                        {% endfor %}
                     </tbody>
