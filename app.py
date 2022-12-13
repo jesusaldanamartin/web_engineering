@@ -1,4 +1,6 @@
+from tkinter import messagebox
 import pandas
+import matplotlib.pyplot as plt
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, redirect, request,url_for
 from datetime import datetime
@@ -7,7 +9,8 @@ from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from sqlalchemy.sql import exists, select
 from flask_bootstrap import Bootstrap
-from tkinter import messagebox
+
+
 
 
 
@@ -36,7 +39,7 @@ class Tareas(db.Model):
     __tablename__ = 'Tareas'
     id = db.Column(db.String(100), primary_key=True)
     descripcionTarea = db.Column(db.String(150), nullable=False)
-    tipo = db.Column(db.String(120), nullable=False, unique=True)
+    tipo = db.Column(db.String(120), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -58,10 +61,10 @@ class Doctor(db.Model):
 
 class Robots(db.Model):
     __tablename__ = 'Robots'
-    id = db.Column(db.String(150), nullable=False)
+    id = db.Column(db.String(150), nullable=False, primary_key= True)
     name = db.Column(db.String(150), nullable=False)
-    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id), primary_key= True)
-    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea), primary_key= True)
+    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
+    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -150,7 +153,7 @@ def robot():
 def tarea():
 
     if request.method == 'POST':
-        id_tarea= request.form['id']
+        id_tarea = request.form['id']
         descripcion_tarea= request.form['descripcionTarea']
         tipo_tarea = request.form['tipo']
 
@@ -176,6 +179,7 @@ def usuario():
         email_usuario = request.form['email']
         password_usuario = request.form['password']
         status_usuario = request.form['status']
+        
 
 
         id_exists = db.session.query(exists().where(Users.id == id_usuario)).scalar()
@@ -183,10 +187,11 @@ def usuario():
             messagebox.showinfo(message="El usuario ya existe, prueba otro ID", title="ERROR CREANDO USUARIO")
             return render_template('formulario_tecnico_usuario.jinja')
 
-        else: 
+        else:
             usuario = Users(id = id_usuario, name = name_usuario, email = email_usuario, password = password_usuario, status = status_usuario)
             db.session.add(usuario)
             db.session.commit()
+            
             return render_template('formulario_tecnico_usuario.jinja')
         
     return render_template('formulario_tecnico_usuario.jinja')
@@ -202,15 +207,25 @@ def robot_tecnico():
         tipo_tarea = request.form['tipoTarea']
 
         robot_exists = db.session.query(exists().where(Robots.id == id_robot)).scalar()
+        tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
+        tarea_tipo_exists = db.session.query(exists().where(Tareas.descripcionTarea == tipo_tarea)).scalar()
+
         if (robot_exists):
-            messagebox.showinfo(message="La tarea ya existe, prueba otro ID", title="ERROR CREANDO ROBOT")
+            messagebox.showinfo(message="Este robot ya existe, prueba otro ID", title="ERROR CREANDO ROBOT")
             return render_template('formulario_tecnico_robots.jinja')
 
         else: 
-            robot = Robots(id = id_robot,name=name_robot, id_Tareas=id_tarea, tipoTarea=tipo_tarea)
-            db.session.add(robot)
-            db.session.commit()
-            return render_template('formulario_tecnico_robots.jinja')
+    
+            if(tarea_exists and tarea_tipo_exists): 
+                robot = Robots(id = id_robot, name=name_robot, id_Tareas = id_tarea, tipoTarea = tipo_tarea)
+                db.session.add(robot)
+                db.session.commit()
+                return render_template('formulario_tecnico_robots.jinja')
+
+            else:
+                messagebox.showinfo(message="Campos incorrectos o incompletos, rellenelos o comprueba el ID tareas o Tipo de Tarea", title="ERROR CREANDO ROBOT")
+                return render_template('formulario_tecnico_robots.jinja')
+
 
     return render_template('formulario_tecnico_robots.jinja')
 

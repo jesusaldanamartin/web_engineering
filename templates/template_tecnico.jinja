@@ -70,12 +70,12 @@
           <table class="table table-bordered table-hover text-center"> <h2>Lista de Usuarios</h2>
             <thead>
               <tr>
-                <th scope="col"> id </th>
-                <th scope="col"> name </th>
-                <th scope="col"> email </th>
-                <th scope="col"> password </th>
-                <th scope="col"> status </th>
-                <th scope="col"> date </th>
+                <th scope="col"> ID Usuario </th>
+                <th scope="col"> Nombre Usuario</th>
+                <th scope="col"> Email </th>
+                <th scope="col"> Contraseña </th>
+                <th scope="col"> Status </th>
+                <th scope="col"> Fecha </th>
               </tr>
             </thead>
             <tbody>
@@ -99,7 +99,7 @@
             <thead>
               <tr>
                 <th scope="col"> ID Tareas </th>
-                <th scope="col"> Name </th>
+                <th scope="col"> Descripcion Tarea </th>
                 <th scope="col"> Tipo de Tarea </th>
                 <th scope="col"> Fecha </th>
               </tr>
@@ -108,7 +108,7 @@
               {% for task in tareas %}
                 <tr>
                   <td>{{task.id}}</td>
-                  <td>{{task.name}}</td>
+                  <td>{{task.descripcionTarea}}</td>
                   <td>{{task.tipo}}</td>
                   <td>{{task.date}}</td>
                 </tr> 
@@ -123,19 +123,22 @@
           <table class="table table-bordered table-hover text-center"> <h2>Lista de Robots</h2>
             <thead>
               <tr>
-                <th scope="col"> ID </th>
-                <th scope="col"> Tipo Tarea </th>
-                <th scope="col"> Nombre </th>
+                <th scope="col"> ID Robot </th>
+                <th scope="col"> Nombre Robot </th>
+                <th scope="col"> Tarea Asociada ID </th>
+                <th scope="col"> Descripcion Tarea Asociada </th>
                 <th scope="col"> Fecha </th>
               </tr>
             </thead>
             <tbody>
               {% for robot in robots %}
                 <tr>
+                  <td>{{robot.id}}</td>
+                  <td>{{robot.name}}</td>
                   <td>{{robot.id_Tareas}}</td>
                   <td>{{robot.tipoTarea}}</td>
-                  <td>{{robot.name}}</td>
                   <td>{{robot.date}}</td>
+
                 </tr> 
               {% endfor %}
             </tbody>
