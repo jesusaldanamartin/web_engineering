@@ -29,28 +29,28 @@
                 <div class="text-left margen padd">
                   <div class="dropdown">
                     <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Table de tareas
+                    Usuarios
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Añadir nueva tarea</a>
+                      <a class="dropdown-item" href="/admin/formularioUsuario">Registrar nuevo usuario</a>
                       <a class="dropdown-item" href="#">Editar</a>
-                      <a class="dropdown-item" href="#">Eliminar</a>
+                      <a class="dropdown-item" href="#">Eliminar usuario</a>
                     </div>
                 </div>
                 </div>
                 <div class="text-left margen padd">
                   <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tabla de robots
-                  </button> Ver tabla
+                    Tabla de Tareas
+                  </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Añadir un nuevo robot</a>
+                    <a class="dropdown-item" href="/admin/formularioTareas">Añadir una nueva tarea</a>
                     <a class="dropdown-item" href="#">Editar</a>
                     <a class="dropdown-item" href="#">Eliminar</a>
                   </div>
                 </div>
                 <div class="text-left margen padd">
                   <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tabla de Usuarios
+                    Tabla de Robots
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Registrar nuevo usuario</a>
@@ -67,7 +67,7 @@
     <fieldset class="text-black col-md-8 px-3">
       <form method="GET" class="mt-5 row justify-content-center">
         <div>
-          <table class="table"> <h2 class="text-center">Lista de Usuarios</h2>
+          <table class="table table-bordered table-hover text-center"> <h2>Lista de Usuarios</h2>
             <thead>
               <tr>
                 <th scope="col"> id </th>
@@ -95,7 +95,7 @@
       </form>
       <form method="GET" class="mt-5 row justify-content-center">
         <div>
-          <table class="table"> <h2>Lista de Tareas</h2>
+          <table class="table table-bordered table-hover text-center"> <h2>Lista de Tareas</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Tareas </th>
@@ -120,7 +120,7 @@
 
       <form method="GET" class="mt-5 row justify-content-center">
         <div>
-          <table class="table"> <h2>Lista de Robots</h2>
+          <table class="table table-bordered table-hover text-center"> <h2>Lista de Robots</h2>
             <thead>
               <tr>
                 <th scope="col"> ID </th>

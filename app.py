@@ -134,12 +134,17 @@ def admin():
 
 @app.route("/doctor")
 def doctor():
-    return render_template('template_medico.jinja')
+    robots_db = db.session.query(Robots).all()
+    tareas_db = db.session.query(Tareas).all()
+
+    #for task in tareas_db: print(task.name)
+    #for robot in robots_db: print(robot.name)
+
+    return render_template('template_medico.jinja', usuarios = robots_db, tareas = tareas_db)
 
 @app.route("/doctor/robot1")
 def robot():
     return render_template('template_robot.jinja')
-
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():

@@ -16,7 +16,7 @@
 }
 
 .editar{
-    background-color: darkseagreen;
+    background-color:  rgb(0, 145, 77);
 }
 
 .asignar{
@@ -53,4 +53,10 @@
 .padd{
     padding-bottom: 50px;
     padding-top: 50px;
+}
+
+.table{
+    background-color: #D6E865;
+    border-color: white;
+    border-radius: 25px;
 }
