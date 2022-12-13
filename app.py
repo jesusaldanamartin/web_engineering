@@ -7,6 +7,8 @@ from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from sqlalchemy.sql import exists, select
 from flask_bootstrap import Bootstrap
+from tkinter import messagebox
+
 
 
 
@@ -150,7 +152,22 @@ def robot():
 
 @app.route("/admin/formularioTareas")
 def tarea():
-    return render_template('formulario_tecnico_tareas.jinja')
+
+    if request.method == 'POST':
+        id_tarea= request.form['id']
+        name_tarea= request.form['name']
+        tipo_tarea = request.form['tipo']
+
+        tarea_exists = db.session.query(exists().where(Tareas.id == id)).scalar()
+        if (tarea_exists):
+            messagebox.showinfo(message="La tarea ya existe, prueba otro ID", title="ERROR CREANDO TAREA")
+            return render_template('formulario_tecnico_tareas.jinja')
+            
+        else: 
+            tarea = Tareas(id = id_tarea, name = name_tarea, tipo = tipo_tarea)
+            db.session.add(tarea)
+            db.session.commit()
+            return render_template('formulario_tecnico_tareas.jinja')
 
 
 @app.route("/admin/formularioUsuarios")
