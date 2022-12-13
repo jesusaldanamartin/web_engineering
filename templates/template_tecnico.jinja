@@ -67,96 +67,52 @@
     <fieldset class="text-black col-md-8 px-3">
       <form method="GET" class="mt-5 row justify-content-center">
         <div>
-          <table class="table"> <h2>Lista de Tareas</h2>
+          <table class="table"> <h2 class="text-center">Lista de Usuarios</h2>
             <thead>
               <tr>
-                <th scope="col"> # </th>
-                <th scope="col"> Nombre</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col"> id </th>
+                <th scope="col"> name </th>
+                <th scope="col"> email </th>
+                <th scope="col"> password </th>
+                <th scope="col"> status </th>
+                <th scope="col"> date </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
+              {% for user in usuarios %}
+                <tr>
+                  <td>{{user.id}}</td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.password}}</td>
+                  <td>{{user.status}}</td>
+                  <td>{{user.date}}</td>
+                </tr> 
+              {% endfor %}
             </tbody>
           </table>
         </div>
       </form>
       <form method="GET" class="mt-5 row justify-content-center">
         <div>
-          <table class="table"> <h2>Lista de Robots</h2>
+          <table class="table"> <h2>Lista de Tareas</h2>
             <thead>
               <tr>
-                <th scope="col"> # </th>
-                <th scope="col"> Nombre </th>
-                <th scope="col"> Descripción </th>
-                <th scope="col"> Estado </th>
+                <th scope="col"> ID Tareas </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> Tipo de Tarea </th>
+                <th scope="col"> Fecha </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
+              {% for task in tareas %}
+                <tr>
+                  <td>{{task.id}}</td>
+                  <td>{{task.name}}</td>
+                  <td>{{task.tipo}}</td>
+                  <td>{{task.date}}</td>
+                </tr> 
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -164,38 +120,24 @@
 
       <form method="GET" class="mt-5 row justify-content-center">
         <div>
-          <table class="table"> <h2>Lista de Usuarios</h2>
+          <table class="table"> <h2>Lista de Robots</h2>
             <thead>
               <tr>
-                <th scope="col"> # </th>
-                <th scope="col"> Nombre</th>
-                <th scope="col"> Funcionalidad </th>
+                <th scope="col"> ID </th>
+                <th scope="col"> Tipo Tarea </th>
+                <th scope="col"> Nombre </th>
+                <th scope="col"> Fecha </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-              </tr>
+              {% for robot in robots %}
+                <tr>
+                  <td>{{robot.id_Tareas}}</td>
+                  <td>{{robot.tipoTarea}}</td>
+                  <td>{{robot.name}}</td>
+                  <td>{{robot.date}}</td>
+                </tr> 
+              {% endfor %}
             </tbody>
           </table>
         </div>

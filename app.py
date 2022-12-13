@@ -11,7 +11,6 @@ from tkinter import messagebox
 
 
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -22,26 +21,25 @@ with app.app_context():
 
 class Users(db.Model):
     __tablename__ = 'Users'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(10), primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     status = db.Column(db.String(20), nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return self.status
+        return f"<User id={self.id} name={self.name} email={self.email} password={self.password} status={self.status} date={self.date}>"
 
 class Tareas(db.Model):
     __tablename__ = 'Tareas'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(10), primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     tipo = db.Column(db.String(120), nullable=False, unique=True)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
     
-
     def __repr__(self):
-        return self.id
+        return f"<Task id={self.id} name={self.name} tipo={self.tipo} date={self.date}>"
 
 class Admin(db.Model):
     __tablename__ = 'Administrators'
@@ -57,27 +55,20 @@ class Doctor(db.Model):
     def __repr__(self):
         return '<doctor %r>' % self.doctor
 
-class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4,max=15)])
-    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=50)])
-    remember = BooleanField('Remember me')
-
 class Robots(db.Model):
     __tablename__ = 'Robots'
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id), primary_key= True)
     tipoTarea = db.Column(db.String(150), nullable=False)
     name = db.Column(db.String(150), nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return '<TipoTarea %r>' % self.tipoTarea
+        return f"<Robot id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} name={self.name} date={self.date}>"
 
 
 def inserts():
     usr = Users(id=0, name="admin", email="email_admin@example.com", password="admin", status="admin")
     usr2 = Users(id=10, name="person2", email="email_medico@example.com", password="67890", status="medico")
-    #usr3 = Users(id=20, name="person2", email="email_tecnico@example.com", password="67890", status="admin")
-    #usr4 = Users(id=30, name="person2", email="email_medico2@example.com", password="67890", status="medico")
 
     tarea1 = Tareas(id = 0, name = "Robot1", tipo = "Limpieza")
     tarea2 = Tareas(id = 1, name = "Robot2", tipo = "Transporte" )
@@ -99,13 +90,9 @@ def inserts():
     db.session.commit()
     db.session.add(robot2)
     db.session.commit()
+
+#* --- RUTAS DE FLASK ---
     
-
-@app.route("/form")
-def form_flask():
-    form = LoginForm()
-    return render_template('home.html', form=form)
-
 @app.route("/")
 def index():
     return redirect(url_for("login"))
@@ -115,31 +102,31 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        status = 'admin'
 
         user_exists = db.session.query(exists().where(Users.name == username)).scalar()
         password_exists = db.session.query(exists().where(Users.password == password)).scalar()
-        #is_admin = db.session.query(exists().where(Users.status == status)).scalar()
-
-        person = select(Users).where(Users.name == username, Users.password == password)
-        get_status = db.session.execute(person).all()
-        
-        print(person)
-        print(str(get_status[0][0]))
-        print(user_exists)
-        print(password_exists)
+        usuario_registrado = db.session.query(Users).where(Users.name == username, Users.password == password).one()
+  
         if (user_exists and password_exists):
-            if (str(get_status[0][0]) == "admin"):
+            if (str(usuario_registrado.status) == "admin"):
                 return redirect('/admin')
             else:
-                return redirect('/doctor')
-                  
+                return redirect('/doctor')         
     else:
         return render_template('log.jinja')
 
 @app.route("/admin")
 def admin():
-    return render_template('template_tecnico.jinja')
+
+    usuarios_db = db.session.query(Users).all()
+    tareas_db = db.session.query(Tareas).all()
+    robots_db = db.session.query(Robots).all()
+
+    #for user in usuarios_db: print(user.name)
+    #for task in tareas_db: print(task.name)
+    #for robot in robots_db: print(robot.name)
+
+    return render_template('template_tecnico.jinja', usuarios = usuarios_db, tareas = tareas_db, robots = robots_db)
 
 @app.route("/doctor")
 def doctor():
@@ -150,15 +137,18 @@ def robot():
     return render_template('template_robot.jinja')
 
 
-@app.route("/admin/formularioTareas")
+@app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():
 
     if request.method == 'POST':
         id_tarea= request.form['id']
         name_tarea= request.form['name']
         tipo_tarea = request.form['tipo']
+        print(id_tarea)
+        print(name_tarea)
+        print(tipo_tarea)
 
-        tarea_exists = db.session.query(exists().where(Tareas.id == id)).scalar()
+        tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
         if (tarea_exists):
             messagebox.showinfo(message="La tarea ya existe, prueba otro ID", title="ERROR CREANDO TAREA")
             return render_template('formulario_tecnico_tareas.jinja')
@@ -169,6 +159,7 @@ def tarea():
             db.session.commit()
             return render_template('formulario_tecnico_tareas.jinja')
 
+    return render_template('formulario_tecnico_tareas.jinja')
 
 @app.route("/admin/formularioUsuarios")
 def usuario():
