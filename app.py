@@ -88,7 +88,6 @@ def login():
         print(user_exists)
         print(password_exists)
 
-
         if (user_exists and password_exists):
             if (str(get_status[0][0]) == "admin"):
                 return redirect('/admin')
@@ -96,16 +95,19 @@ def login():
                 return redirect('/doctor')
                   
     else:
-        return render_template('log.html')
+        return render_template('log.jinja')
 
 @app.route("/admin")
 def admin():
-    return render_template('template_tecnico.html')
+    return render_template('template_tecnico.jinja')
 
 @app.route("/doctor")
 def doctor():
-    return render_template('template_medico.html')
+    return render_template('template_medico.jinja')
 
+@app.route("/doctor/robot1")
+def robot():
+    return render_template('template_robot.jinja')
 
 if __name__ == "__main__":
     app.app_context().push()
