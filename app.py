@@ -87,7 +87,6 @@ def login():
         print(str(get_status[0][0]))
         print(user_exists)
         print(password_exists)
-
         if (user_exists and password_exists):
             if (str(get_status[0][0]) == "admin"):
                 return redirect('/admin')
