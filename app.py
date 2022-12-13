@@ -1,11 +1,12 @@
 import pandas
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, redirect, request,url_for
+from flask import Flask, render_template, redirect, request,url_for, flash
 from datetime import datetime
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from sqlalchemy.sql import exists, select
+from sqlalchemy import exc
 from flask_bootstrap import Bootstrap
 from tkinter import messagebox
 
@@ -104,18 +105,24 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        try:
+            username = request.form['username']
+            password = request.form['password']
 
-        user_exists = db.session.query(exists().where(Users.name == username)).scalar()
-        password_exists = db.session.query(exists().where(Users.password == password)).scalar()
-        usuario_registrado = db.session.query(Users).where(Users.name == username, Users.password == password).one()
-  
-        if (user_exists and password_exists):
-            if (str(usuario_registrado.status) == "admin"):
-                return redirect('/admin')
-            else:
-                return redirect('/doctor')         
+            user_exists = db.session.query(exists().where(Users.name == username)).scalar()
+            password_exists = db.session.query(exists().where(Users.password == password)).scalar()
+            usuario_registrado = db.session.query(Users).where(Users.name == username, Users.password == password).one()
+        
+            if (user_exists and password_exists):
+                 if (str(usuario_registrado.status) == "admin"):
+                   return redirect('/admin')
+                 else:
+                    return redirect('/doctor')  
+            
+
+        except exc.NoResultFound:
+            flash('Credenciales incorrectas')
+            return render_template('log.jinja') 
     else:
         return render_template('log.jinja')
 
