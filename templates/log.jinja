@@ -38,11 +38,16 @@
                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                     <label class="form-label" for="password">Contraseña</label>
                   </div>
-  
+
                   <!-- Submit button -->
                   <button type="submit" class="btn btn-block mb-4 bot_inicio">
                     Iniciar sesion
                   </button>
+
+                  {% for mesg in get_flashed_messages() %}
+                  <p style="color: red;">{{ mesg }}<p>
+                  {% endfor %}
+
                 </div>
                 </form>
               </div>

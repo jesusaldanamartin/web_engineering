@@ -121,7 +121,8 @@ def login():
             
 
         except exc.NoResultFound:
-            flash('Credenciales incorrectas')
+            flash('Credenciales incorrectas.')
+            
             return render_template('log.jinja') 
     else:
         return render_template('log.jinja')
