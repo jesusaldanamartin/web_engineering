@@ -34,7 +34,7 @@ class Users(db.Model):
 
 class Tareas(db.Model):
     __tablename__ = 'Tareas'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(100), primary_key=True)
     descripcionTarea = db.Column(db.String(150), nullable=False)
     tipo = db.Column(db.String(120), nullable=False, unique=True)
     date = db.Column(db.DateTime, default=datetime.utcnow)
@@ -61,7 +61,7 @@ class Robots(db.Model):
     id = db.Column(db.String(150), nullable=False)
     name = db.Column(db.String(150), nullable=False)
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id), primary_key= True)
-    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.name), primary_key= True)
+    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea), primary_key= True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -75,7 +75,7 @@ def inserts():
     #usr3 = Users(id=20, name="person2", email="email_tecnico@example.com", password="67890", status="admin")
     #usr4 = Users(id=30, name="person2", email="email_medico2@example.com", password="67890", status="medico")
 
-    tarea1 = Tareas(id = 0, descipcionTarea = "Limpieza pasillo", tipo = "Limpieza")
+    tarea1 = Tareas(id = 0, descripcionTarea = "Limpieza pasillo", tipo = "Limpieza")
     tarea2 = Tareas(id = 1, descripcionTarea = "Transporte Medicamentos", tipo = "Transporte" )
 
     robot1 = Robots(id = 0, name = "Robot1", id_Tareas = 0, tipoTarea = "Limpieza pasillo")
