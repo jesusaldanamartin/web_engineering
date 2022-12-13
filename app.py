@@ -187,10 +187,10 @@ def tarea():
         id_tarea = request.form['id']
         descripcion_tarea= request.form['descripcionTarea']
         tipo_tarea = request.form['tipo']
-
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
+
         if (tarea_exists):
-            messagebox.showinfo(message="La tarea ya existe, prueba otro ID", title="ERROR CREANDO TAREA")
+            messagebox.showinfo(message="La tarea ya existe o faltan campos por rellenar", title="ERROR CREANDO TAREA")
             return render_template('formulario_tecnico_tareas.jinja')
 
         else: 
