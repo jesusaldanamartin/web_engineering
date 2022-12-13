@@ -40,7 +40,7 @@ class Tareas(db.Model):
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"<Task id={self.id} name={self.name} tipo={self.tipo} date={self.date}>"
+        return f"<Task id={self.id} descipcionTarea={self.descripcionTarea} tipo={self.tipo} date={self.date}>"
 
 class Admin(db.Model):
     __tablename__ = 'Administrators'
@@ -64,9 +64,8 @@ class Robots(db.Model):
     tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.name), primary_key= True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
-#Cambiar con los nuevos atributos
     def __repr__(self):
-        return f"<Robot id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} name={self.name} date={self.date}>"
+        return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} date={self.date}>"
 
 
 
