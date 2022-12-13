@@ -174,7 +174,32 @@ def doctor():
 
     return render_template('template_medico.jinja', robots = robots_db, tareas = tareas_db, acciones=accion_db)
 
+@app.route("/deleteTarea/<id_t>")
+def delete_tarea(id_t):
 
+    tarea_exists = db.session.query(Tareas).get(id_t)
+    db.session.delete(tarea_exists)
+    db.session.commit()
+
+    return redirect(url_for('admin'))
+
+@app.route("/deleteUsuario/<id_u>")
+def delete_usuario(id_u):
+
+    usuario = db.session.query(Users).get(id_u)
+    db.session.delete(usuario)
+    db.session.commit()
+
+    return redirect(url_for('admin'))
+
+@app.route("/deleteRobot/<id_t>")
+def delete_robot(id_t):
+
+    robot = db.session.query(Robots).get(id_t)
+    db.session.delete(robot)
+    db.session.commit()
+
+    return redirect(url_for('admin'))
 
 @app.route("/doctor/robot1")
 def robot():

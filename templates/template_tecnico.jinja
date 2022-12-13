@@ -120,6 +120,9 @@
                   <td>{{user.password}}</td>
                   <td>{{user.status}}</td>
                   <td>{{user.date}}</td>
+                  <td> 
+                     <a href="/deleteUsuario/{{user.id}}">Eliminar</a>
+                    </td>
                 </tr> 
               {% endfor %}
             </tbody>
@@ -144,6 +147,9 @@
                   <td>{{task.descripcionTarea}}</td>
                   <td>{{task.tipo}}</td>
                   <td>{{task.date}}</td>
+                   <td> 
+                     <a href="/deleteTarea/{{task.id}}">Eliminar</a>
+                    </td>
                 </tr> 
               {% endfor %}
             </tbody>
@@ -172,6 +178,9 @@
                   <td>{{robot.id_Tareas}}</td>
                   <td>{{robot.tipoTarea}}</td>
                   <td>{{robot.date}}</td>
+                  <td> 
+                     <a href="/deleteRobot/{{robot.id}}">Eliminar</a>
+                    </td>
 
                 </tr> 
               {% endfor %}
