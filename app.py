@@ -71,6 +71,18 @@ class Robots(db.Model):
     def __repr__(self):
         return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} date={self.date}>"
 
+class Tabla_Medico(db.Model):
+    __tablename__ = 'Tabla medico'
+    id_robot = db.Column(db.String(150), nullable=False, primary_key= True)
+    name_robot = db.Column(db.String(150), db.ForeignKey(Robots.name))
+    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
+    realizando_tarea = db.Column(db.String(150),nullable=False )
+    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
+    date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} realizandoTarea={self.realizando_tarea} date={self.date}>"
+
 
 
 def inserts():
@@ -85,6 +97,9 @@ def inserts():
     robot1 = Robots(id = 0, name = "Robot1", id_Tareas = 0, tipoTarea = "Limpieza pasillo")
     robot2 = Robots(id = 1, name = "Robot2", id_Tareas = 1, tipoTarea = "Transporte de Medicamentos")
 
+    accion1 = Tabla_Medico(id_robot=0, name_robot="Robot1", id_Tareas=1, realizando_tarea="Ocupado",tipoTarea="Limpieza pasillo" )
+    accion2 = Tabla_Medico(id_robot=1, name_robot="Robot2", id_Tareas=1, realizando_tarea="Disponible",tipoTarea="..." )
+
     db.session.add(usr)
     db.session.commit()
     db.session.add(usr2)
@@ -98,6 +113,11 @@ def inserts():
     db.session.add(robot1)
     db.session.commit()
     db.session.add(robot2)
+    db.session.commit()
+
+    db.session.add(accion1)
+    db.session.commit()
+    db.session.add(accion2)
     db.session.commit()
     
 
@@ -147,11 +167,14 @@ def admin():
 def doctor():
     robots_db = db.session.query(Robots).all()
     tareas_db = db.session.query(Tareas).all()
+    accion_db = db.session.query(Tabla_Medico).all()
 
     #for task in tareas_db: print(task.name)
     #for robot in robots_db: print(robot.name)
 
-    return render_template('template_medico.jinja', usuarios = robots_db, tareas = tareas_db)
+    return render_template('template_medico.jinja', robots = robots_db, tareas = tareas_db, acciones=accion_db)
+
+
 
 @app.route("/doctor/robot1")
 def robot():

@@ -21,7 +21,16 @@
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
                     officia deserunt mollit anim id est laborum.
                 </p>
-
+                 <div class="text-left margen padd">
+                  <div class="dropdown">
+                    <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="/admin/formularioUsuarios">Registrar nuevo usuario</a>
+                      <a class="dropdown-item" href="#">Editar</a>
+                      <a class="dropdown-item" href="#">Eliminar usuario</a>
+                    </div>
+                </div>
                 <div class="text-left margen">
                     <button type="button" class="btn btn-light btn-lg editar">- Editar -</button> BLA BLA BLA BLA
                 </div>
@@ -75,19 +84,25 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Column1</th>
-                        <th scope="col">Column2</th>
-                        <th scope="col">Column3</th>
-                        <th scope="col">Column4</th>
+                        <th scope="col">ID Robot</th>
+                        <th scope="col">Nombre robot</th>
+                        <th scope="col">ID Tarea</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Realizando tarea</th>
+                        <th scope="col">Fecha</th>
                       </tr>
                     </thead>
                     <tbody>
+                      {% for tablas in acciones %}
                       <tr>
-                        <th scope="row">1</th>
-                        <td>value1</td>
-                        <td>value2</td>
-                        <td>value3</td>
+                        <td>{{tablas.id_robot}}</td>
+                            <td>{{tablas.name_robot}}</td>
+                            <td>{{tablas.id_Tareas}}</td>
+                            <td>{{tablas.realizando_tarea}}</td>
+                            <td>{{tablas.tipoTarea}}</td>
+                            <td>{{tablas.date}}</td>
                       </tr>
+                       {% endfor %}
                     </tbody>
                   </table>
                 In need of a button, but not the hefty background colors they bring? 
