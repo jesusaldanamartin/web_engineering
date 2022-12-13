@@ -149,8 +149,13 @@ def robot():
 
 
 @app.route("/admin/formularioTareas")
-def tareas():
+def tarea():
     return render_template('formulario_tecnico_tareas.jinja')
+
+
+@app.route("/admin/formularioUsuarios")
+def usuario():
+    return render_template('formulario_tecnico_usuario.jinja')
 
 if __name__ == "__main__":
     app.app_context().push()
