@@ -11,6 +11,7 @@ from tkinter import messagebox
 
 
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -29,15 +30,15 @@ class Users(db.Model):
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"<User id={self.id} name={self.name} email={self.email} password={self.password} status={self.status} date={self.date}>"
+       return f"<User id={self.id} name={self.name} email={self.email} password={self.password} status={self.status} date={self.date}>"
 
 class Tareas(db.Model):
     __tablename__ = 'Tareas'
-    id = db.Column(db.String(10), primary_key=True)
-    name = db.Column(db.String(150), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    descripcionTarea = db.Column(db.String(150), nullable=False)
     tipo = db.Column(db.String(120), nullable=False, unique=True)
     date = db.Column(db.DateTime, default=datetime.utcnow)
-    
+
     def __repr__(self):
         return f"<Task id={self.id} name={self.name} tipo={self.tipo} date={self.date}>"
 
@@ -57,24 +58,29 @@ class Doctor(db.Model):
 
 class Robots(db.Model):
     __tablename__ = 'Robots'
-    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id), primary_key= True)
-    tipoTarea = db.Column(db.String(150), nullable=False)
+    id = db.Column(db.String(150), nullable=False)
     name = db.Column(db.String(150), nullable=False)
-    date = db.Column(db.DateTime, default=datetime.utcnow)
+    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id), primary_key= True)
+    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.name), primary_key= True)
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
+#Cambiar con los nuevos atributos
     def __repr__(self):
         return f"<Robot id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} name={self.name} date={self.date}>"
+
 
 
 def inserts():
     usr = Users(id=0, name="admin", email="email_admin@example.com", password="admin", status="admin")
     usr2 = Users(id=10, name="person2", email="email_medico@example.com", password="67890", status="medico")
+    #usr3 = Users(id=20, name="person2", email="email_tecnico@example.com", password="67890", status="admin")
+    #usr4 = Users(id=30, name="person2", email="email_medico2@example.com", password="67890", status="medico")
 
-    tarea1 = Tareas(id = 0, name = "Robot1", tipo = "Limpieza")
-    tarea2 = Tareas(id = 1, name = "Robot2", tipo = "Transporte" )
+    tarea1 = Tareas(id = 0, descipcionTarea = "Limpieza pasillo", tipo = "Limpieza")
+    tarea2 = Tareas(id = 1, descripcionTarea = "Transporte Medicamentos", tipo = "Transporte" )
 
-    robot1 = Robots(id_Tareas = 0, tipoTarea = "Limpieza de Suelo", name = "Robot1")
-    robot2 = Robots(id_Tareas = 1, tipoTarea = "Transporte de Medicamentos", name = "Robot2")
+    robot1 = Robots(id = 0, name = "Robot1", id_Tareas = 0, tipoTarea = "Limpieza pasillo")
+    robot2 = Robots(id = 1, name = "Robot2", id_Tareas = 1, tipoTarea = "Transporte de Medicamentos")
 
     db.session.add(usr)
     db.session.commit()
@@ -90,9 +96,8 @@ def inserts():
     db.session.commit()
     db.session.add(robot2)
     db.session.commit()
-
-#* --- RUTAS DE FLASK ---
     
+
 @app.route("/")
 def index():
     return redirect(url_for("login"))
@@ -142,23 +147,20 @@ def tarea():
 
     if request.method == 'POST':
         id_tarea= request.form['id']
-        name_tarea= request.form['name']
+        descripcion_tarea= request.form['descripcionTarea']
         tipo_tarea = request.form['tipo']
-        print(id_tarea)
-        print(name_tarea)
-        print(tipo_tarea)
 
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
         if (tarea_exists):
             messagebox.showinfo(message="La tarea ya existe, prueba otro ID", title="ERROR CREANDO TAREA")
             return render_template('formulario_tecnico_tareas.jinja')
-            
+
         else: 
-            tarea = Tareas(id = id_tarea, name = name_tarea, tipo = tipo_tarea)
+            tarea = Tareas(id = id_tarea, descripcionTarea = descripcion_tarea, tipo = tipo_tarea)
             db.session.add(tarea)
             db.session.commit()
             return render_template('formulario_tecnico_tareas.jinja')
-
+        
     return render_template('formulario_tecnico_tareas.jinja')
 
 @app.route("/admin/formularioUsuarios")
