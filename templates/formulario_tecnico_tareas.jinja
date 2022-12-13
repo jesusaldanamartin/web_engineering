@@ -1,0 +1,70 @@
+{% extends 'base.jinja' %}
+
+{% block head %}
+<title> Robots Asistenciales</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+
+{% block content %}
+
+<body class="bg">
+    <fieldset class="main-container row p-5 mx-0 justify-content-center align-self-center">
+        <div class="main-container row p-5 mx-0 justify-content-center align-self-center">
+            <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Formulario Tareas</h1>
+            <form class="main-container row p-5 mx-0 justify-content-center align-self-center" method="post"
+                name="formulario_lista_tareas">
+
+                <div class="card">
+                    <div class="card-body py-5 px-md-5">
+                        <form class="form_formulario_tecnico_tareas" action="/formulario_tecnico_tareas" method="POST">
+                            <!-- ID input -->
+                            <div class="form-group row mb-4">
+                                <label for="id" class="col-sm-2 col-form-label">Id</label>
+                                <div class="col-sm-10">
+                                    <input type="id" class="form-control" id="id" placeholder="Id">
+                                </div>
+                            </div>
+
+                            <!-- NombreTareas input -->
+                            <div class="form-group row mb-4">
+                                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="name" class="form-control" id="name" placeholder="Name">
+                                </div>
+                            </div>
+                            <!-- TipoTareas input -->
+                             <div class="form-group row mb-4">
+                                <label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
+                                <div class="col-sm-10">
+                                    <input type="tipo" class="form-control" id="name" placeholder="Tipo">
+                                </div>
+                            </div>
+
+                            <!-- Enviar Tarea button -->
+                            <button type="submit" class="btn btn-block mb-4 bot_inicio">
+                                Enviar Tarea
+                            </button>
+                            <!--Limpiar Tarea button -->
+                            <button type="submit" class="btn btn-block mb-4 bot_inicio">
+                                Limpiar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+</body>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+    </script>
+
+{% endblock %}

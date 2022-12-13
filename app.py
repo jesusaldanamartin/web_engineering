@@ -147,6 +147,11 @@ def doctor():
 def robot():
     return render_template('template_robot.jinja')
 
+
+@app.route("/admin/formularioTareas")
+def tareas():
+    return render_template('formulario_tecnico_tareas.jinja')
+
 if __name__ == "__main__":
     app.app_context().push()
     db.drop_all()
