@@ -45,7 +45,9 @@
                   </button>
 
                   {% for mesg in get_flashed_messages() %}
-                  <p style="color: red;">{{ mesg }}<p>
+                    <div class = "alert alert-danger ">
+                      <p style="color: red;">{{ mesg }}<p></p>
+                    </div> 
                   {% endfor %}
 
                 </div>
