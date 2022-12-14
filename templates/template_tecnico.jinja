@@ -21,16 +21,20 @@
     {# <div class="text-left">
       <button type="button" class="btn btn-dark btn-lg incidencias my_black"> Incidencias </button>
     </div> #}
-    <div class="container">
-      {# <div class="row"> #}
-        <div class="row justify-content-md-star">
-          {# <div class="col col-lg-2">#}
-            <div class="col col-lg-2">
+    <div class="col col-lg-2">
+        <button type="button" class="btn btn-primary btn-lg" id="show-user-div">Mostrar Usuarios</button>          
+    </div>
+    <div class="col col-lg-2">
+        <button type="button" class="btn btn-primary btn-lg" id="show-task-div">Mostrar Tareas</button>          
+    </div>
+    <div class="col col-lg-2">
+        <button type="button" class="btn btn-primary btn-lg" id="show-robot-div">Mostrar Robots</button>          
+    </div>
+    <div class="col col-lg-2">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
                 Incidencias
               </button>
-
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -51,10 +55,16 @@
                   </div>
                 </div>
               </div>
-            </div>
+      </div>
+    
+
+    <div class="container">
+      {# <div class="row"> #}
+        <div class="row justify-content-md-star">
+          {# <div class="col col-lg-2">#}
+            
           </div>
         </div>
-
     <fieldset class="col-md-4 d-flex justify-content-center align-self-center">
         <form class="row px-3" method="POST" action="/upload" enctype="multipart/form-data">
 
@@ -99,8 +109,8 @@
     </fieldset>
     <fieldset class="text-black col-md-8 px-3">
       <form method="GET" class="mt-5 row justify-content-center">
-        <div>
-          <table class="table table-bordered table-hover text-center"> <h2>Lista de Usuarios</h2>
+        <div id = user-div name="user-div">
+          <table class="table table-hover table-sortable"> <h2>Lista de Usuarios</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Usuario </th>
@@ -109,6 +119,7 @@
                 <th scope="col"> Contraseña </th>
                 <th scope="col"> Status </th>
                 <th scope="col"> Fecha </th>
+                <th scope="col"> Borrar </th>
               </tr>
             </thead>
             <tbody>
@@ -131,8 +142,8 @@
         </div>
       </form>
       <form method="GET" class="mt-5 row justify-content-center">
-        <div>
-          <table class="table table-bordered table-hover text-center"> <h2>Lista de Tareas</h2>
+        <div id = task-div name="task-div">
+          <table class="table table-hover table-sortable"> <h2>Lista de Tareas</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Tareas </th>
@@ -156,8 +167,8 @@
       </form>
 
       <form method="GET" class="mt-5 row justify-content-center">
-        <div>
-          <table class="table table-bordered table-hover text-center"> <h2>Lista de Robots</h2>
+        <div id = robot-div name="robot-div">
+          <table class="table table-hover table-sortable"> <h2>Lista de Robots</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Robot </th>

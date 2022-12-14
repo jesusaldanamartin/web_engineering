@@ -1,6 +1,5 @@
 from tkinter import messagebox
 import pandas
-import matplotlib.pyplot as plt
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, redirect, request,url_for, flash
 from datetime import datetime
@@ -10,10 +9,6 @@ from wtforms.validators import InputRequired, Email, Length
 from sqlalchemy.sql import exists, select
 from sqlalchemy import exc
 from flask_bootstrap import Bootstrap
-
-
-
-
 
 
 app = Flask(__name__)
@@ -84,7 +79,6 @@ class Tabla_Medico(db.Model):
         return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} realizandoTarea={self.realizando_tarea} date={self.date}>"
 
 
-
 def inserts():
     usr = Users(id=0, name="admin", email="email_admin@example.com", password="admin", status="admin")
     usr2 = Users(id=10, name="person2", email="email_medico@example.com", password="67890", status="medico")
@@ -119,6 +113,9 @@ def inserts():
     db.session.commit()
     db.session.add(accion2)
     db.session.commit()
+
+
+#* --- RUTAS DE FLASK ---
     
 
 @app.route("/")
@@ -163,7 +160,7 @@ def admin():
 
     return render_template('template_tecnico.jinja', usuarios = usuarios_db, tareas = tareas_db, robots = robots_db)
 
-@app.route("/doctor")
+@app.route("/doctor", methods=["GET", "POST"])
 def doctor():
     robots_db = db.session.query(Robots).all()
     tareas_db = db.session.query(Tareas).all()
@@ -201,9 +198,9 @@ def delete_robot(id_t):
 
     return redirect(url_for('admin'))
 
-@app.route("/doctor/robot1")
-def robot():
-    return render_template('template_robot.jinja')
+@app.route("/doctor/<robot_name>")
+def robot(robot_name):
+    return render_template('template_robot.jinja', name=robot_name)
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():

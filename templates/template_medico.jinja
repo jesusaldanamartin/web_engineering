@@ -10,7 +10,7 @@
 <body class="bg">
 
 <div class="main-container row p-5 mx-0 justify-content-center align-items-center align-self-center">
-    <legend>Médico</legend>
+    <legend>Medico</legend>
     <fieldset class="col-md-6 d-flex justify-content-center">
         <form class="row px-3" method="POST" action="/upload" enctype="multipart/form-data">
             <div>
@@ -47,7 +47,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form method="POST" action="/doctor">
                       <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Cabecera:</label>
                         <input type="text" class="form-control" id="recipient-name">
@@ -70,7 +70,7 @@
         </form>
     </fieldset>
     <fieldset class="text-black col-md-6 px-3">
-        <form method="GET" class="mt-5 row justify-content-center">
+        <form method="GET" class="mt-5 row justify-content-center table-sortable">
             <div>
                 <table class="table">
                     <thead>
@@ -87,7 +87,7 @@
                       {% for tablas in acciones %}
                       <tr>
                             <td>{{tablas.id_robot}}</td>
-                            <td>{{tablas.name_robot}}</td>
+                            <td><a href="/doctor/{{tablas.name_robot}}">{{tablas.name_robot}}</td>
                             <td>{{tablas.id_Tareas}}</td>
                             <td>{{tablas.realizando_tarea}}</td>
                             <td>{{tablas.tipoTarea}}</td>
@@ -111,7 +111,7 @@
     <fieldset class="fieldset-about col-md-4">
     </fieldset>
 
-    <form method="GET" class="mt-5 row justify-content-center">
+    <form method="GET" class="mt-5 row justify-content-center table-sortable">
         <fieldset class="text-white col-md-6">
             <div>
                 <table class="table">

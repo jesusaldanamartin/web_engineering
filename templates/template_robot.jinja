@@ -11,7 +11,7 @@
 <body class="bg">
 
     <div class="main-container row p-5 mx-0" style="height: 500px">
-        <legend>Robot 1</legend>
+        <legend>{{name}}</legend>
         <fieldset class="col-md-5 d-flex justify-content-left align-items-center">
             <form class="row px-3" method="POST" action="/upload" enctype="multipart/form-data">
                 <div>
@@ -24,7 +24,7 @@
         <fieldset class="text-black col-md-6 px-3">
             <form method="GET" class="mt-5 row">
                 <div>
-                    <table class="table"> <h2>Lista de robots</h2>
+                    <table class="table table-sortable"> <h2>Lista de robots</h2>
                         <thead>
                             <tr>
                                 <th scope="col">Column1</th>
