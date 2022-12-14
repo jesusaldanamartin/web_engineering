@@ -55,7 +55,11 @@
     padding-top: 50px;
 }
 
-#user-div, #task-div, #robot-div{
+#user-div{
+    display: block;
+}
+
+#task-div, #robot-div{
     display: none;
 }
 
@@ -115,4 +119,8 @@
 .table-sortable .th-sort-desc::after{
     margin-left: 5px;
     content: "\25be";
+}
+
+.bot{
+    padding-bottom: 2.3cm;
 }

@@ -8,7 +8,7 @@
 {% block content %}
 
 <body class="bg">
-    <fieldset class="main-container row p-5 mx-0 justify-content-center align-self-center">
+    <fieldset class="main-container row p-5 mx-0 justify-content-center align-self-center bot">
         <div class="main-container row p-5 mx-0 justify-content-center align-self-center">
             <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Formulario Tareas</h1>
             <form class="main-container row p-5 mx-0 justify-content-center align-self-center" method="post"
@@ -48,6 +48,18 @@
                             <button type="submit" class="btn btn-block mb-4 bot_inicio">
                                 Limpiar
                             </button>
+
+                            {% for mesg in get_flashed_messages() %}
+                                {% if mesg == '¡Tarea creada con éxito!' %}
+                                    <div class = "text-center alert alert-success">
+                                        <p style="color: green;">{{ mesg }}<p>
+                                    </div>
+                                {% else %}
+                                    <div class = "text-center alert alert-danger ">
+                                        <p style="color: red;">{{ mesg }}<p></p>
+                                    </div> 
+                                {% endif %}
+                            {% endfor %}
                         </form>
                     </div>
                 </div>

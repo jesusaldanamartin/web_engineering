@@ -65,6 +65,18 @@
                             <button type="submit" class="btn btn-block mb-4 bot_inicio">
                                 Limpiar
                             </button>
+
+                            {% for mesg in get_flashed_messages() %}
+                                {% if mesg == '¡Usuario creado con éxito!' %}
+                                    <div class = "text-center alert alert-success">
+                                        <p style="color: green;">{{ mesg }}<p>
+                                    </div>
+                                {% else %}
+                                    <div class = "text-center alert alert-danger ">
+                                        <p style="color: red;">{{ mesg }}<p></p>
+                                    </div> 
+                                {% endif %}
+                            {% endfor %}
                         </form>
                     </div>
                 </div>

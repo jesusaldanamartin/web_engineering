@@ -213,13 +213,14 @@ def tarea():
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
 
         if (tarea_exists):
-            messagebox.showinfo(message="La tarea ya existe o faltan campos por rellenar", title="ERROR CREANDO TAREA")
+            flash('ERROR: La tarea ya existe o faltan campos por rellenar')
             return render_template('formulario_tecnico_tareas.jinja')
 
         else: 
             tarea = Tareas(id = id_tarea, descripcionTarea = descripcion_tarea, tipo = tipo_tarea)
             db.session.add(tarea)
             db.session.commit()
+            flash('¡Tarea creada con éxito!')
             return render_template('formulario_tecnico_tareas.jinja', tabla=tareaNula)
         
     return render_template('formulario_tecnico_tareas.jinja', tabla = tareaNula)
@@ -238,7 +239,7 @@ def usuario():
 
         id_exists = db.session.query(exists().where(Users.id == id_usuario)).scalar()
         if (id_exists):
-            messagebox.showinfo(message="El usuario ya existe, prueba otro ID", title="ERROR CREANDO USUARIO")
+            flash('ERROR: El usuario ya existe, prueba otro ID')
             return render_template('formulario_tecnico_usuario.jinja')
 
         else:
@@ -246,6 +247,7 @@ def usuario():
             db.session.add(usuario)
             db.session.commit()
             
+            flash('¡Usuario creado con éxito!')
             return render_template('formulario_tecnico_usuario.jinja')
         
     return render_template('formulario_tecnico_usuario.jinja')
@@ -265,7 +267,7 @@ def robot_tecnico():
         tarea_tipo_exists = db.session.query(exists().where(Tareas.descripcionTarea == tipo_tarea)).scalar()
 
         if (robot_exists):
-            messagebox.showinfo(message="Este robot ya existe, prueba otro ID", title="ERROR CREANDO ROBOT")
+            flash('ERROR: Este robot ya existe, prueba otro ID')
             return render_template('formulario_tecnico_robots.jinja')
 
         else: 
@@ -274,10 +276,12 @@ def robot_tecnico():
                 robot = Robots(id = id_robot, name=name_robot, id_Tareas = id_tarea, tipoTarea = tipo_tarea)
                 db.session.add(robot)
                 db.session.commit()
+                
+                flash('¡Robot creado con éxito!')
                 return render_template('formulario_tecnico_robots.jinja')
 
             else:
-                messagebox.showinfo(message="Campos incorrectos o incompletos, rellenelos o comprueba el ID tareas o Tipo de Tarea", title="ERROR CREANDO ROBOT")
+                flash("ERROR: Campos incompletos o incorrectos, comprueba el ID tareas o Tipo de Tarea")
                 return render_template('formulario_tecnico_robots.jinja')
 
 
