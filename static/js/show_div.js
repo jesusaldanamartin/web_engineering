@@ -53,10 +53,3 @@ btn4.addEventListener("click", function(){
         btn4.textContent = 'Ocultar Todo'
     }
 });
-
-// No funciona ?
-// if(container.style.display == "block" &&
-//         container2.style.display == "block" &&
-//         container3.style.display == "block") {
-//             btn4.textContent == 'Ocultar Todo'
-//     }

@@ -87,7 +87,7 @@
                   <td>{{user.status}}</td>
                   <td>{{user.date}}</td>
                     <td> 
-                     <a href="/deleteUsuario/{{user.id}}">Eliminar</a>
+                     <a class="btn btn-secondary" href="/deleteUsuario/{{user.id}}">Eliminar</a>
                     </td>
                 </tr> 
                 </tr> 
@@ -107,6 +107,7 @@
                 <th scope="col"> Descripcion Tarea </th>
                 <th scope="col"> Tipo de Tarea </th>
                 <th scope="col"> Fecha </th>
+                <th scope="col"> Editar </th>
               </tr>
             </thead>
             <tbody>
@@ -116,6 +117,9 @@
                   <td>{{task.descripcionTarea}}</td>
                   <td>{{task.tipo}}</td>
                   <td>{{task.date}}</td>
+                  <td> 
+                     <a class="btn btn-secondary" href="/admin/formularioTareas/{{ task.id }}">Editar</a>
+                  </td>
                 </tr> 
               {% endfor %}
             </tbody>
