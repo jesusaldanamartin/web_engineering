@@ -69,10 +69,10 @@ class Robots(db.Model):
 class Tabla_Medico(db.Model):
     __tablename__ = 'Tabla medico'
     id_robot = db.Column(db.String(150), nullable=False, primary_key= True)
-    name_robot = db.Column(db.String(150))   #, db.ForeignKey(Robots.name))
-    id_Tareas = db.Column(db.String(100))    #, db.ForeignKey(Tareas.id))
+    name_robot = db.Column(db.String(150), db.ForeignKey(Robots.name))
+    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
     realizando_tarea = db.Column(db.String(150),nullable=False )
-    tipoTarea = db.Column(db.String(150))  #,db.ForeignKey(Tareas.descripcionTarea))
+    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -326,7 +326,7 @@ def edit(id):
     return render_template('formularioPrueba.jinja', tablas = fila_1)
 
     
-@app.route("/admin/editarTareas/<id>", methods=["GET","POST"])
+@app.route("/admin/formularioTareas/<id>", methods=["GET","POST"])
 def edit_tareas(id):
     tarea_1 = db.session.query(Tareas).get(id)
 
