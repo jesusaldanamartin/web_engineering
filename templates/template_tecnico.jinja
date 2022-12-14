@@ -22,7 +22,7 @@
       <button type="button" class="btn btn-dark btn-lg incidencias my_black"> Incidencias </button>
     </div> #}
     <div class="col col-lg-2">
-        <button type="button" class="btn btn-primary btn-lg" id="show-user-div">Mostrar Usuarios</button>          
+        <button type="button" class="btn btn-primary btn-lg" id="show-user-div">Ocultar Usuarios</button>          
     </div>
     <div class="col col-lg-2">
         <button type="button" class="btn btn-primary btn-lg" id="show-task-div">Mostrar Tareas</button>          
@@ -60,10 +60,10 @@
               </div>
     </div>
               
-    <fieldset class="text-black col-md-8 px-3">
+    <fieldset class="text-black col-md-8 px-3 bot">
 
       <form method="GET" class="mt-5 row justify-content-center">
-        <div class = "row" id = user-div name="user-div" style="display: none;">
+        <div class = "row" id = user-div name="user-div">
           <table class="table table-hover table-sortable"> 
             <h2 class = "text-center">Lista de Usuarios</h2>
             <thead>
@@ -156,6 +156,7 @@
       </form>
   </fieldset>
   </div>
+  <div class="bot"></div>
 {% endblock %}
 
 {% block scripts %}
