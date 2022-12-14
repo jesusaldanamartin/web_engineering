@@ -69,14 +69,15 @@ class Robots(db.Model):
 class Tabla_Medico(db.Model):
     __tablename__ = 'Tabla medico'
     id_robot = db.Column(db.String(150), nullable=False, primary_key= True)
-    name_robot = db.Column(db.String(150), db.ForeignKey(Robots.name))
-    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
+    name_robot = db.Column(db.String(150))   #, db.ForeignKey(Robots.name))
+    id_Tareas = db.Column(db.String(100))    #, db.ForeignKey(Tareas.id))
     realizando_tarea = db.Column(db.String(150),nullable=False )
-    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
+    tipoTarea = db.Column(db.String(150))  #,db.ForeignKey(Tareas.descripcionTarea))
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} realizandoTarea={self.realizando_tarea} date={self.date}>"
+
 
 
 def inserts():
@@ -204,7 +205,7 @@ def robot(robot_name):
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():
-
+    tareaNula = Tareas()
     if request.method == 'POST':
         id_tarea = request.form['id']
         descripcion_tarea= request.form['descripcionTarea']
@@ -219,9 +220,9 @@ def tarea():
             tarea = Tareas(id = id_tarea, descripcionTarea = descripcion_tarea, tipo = tipo_tarea)
             db.session.add(tarea)
             db.session.commit()
-            return render_template('formulario_tecnico_tareas.jinja')
+            return render_template('formulario_tecnico_tareas.jinja', tabla=tareaNula)
         
-    return render_template('formulario_tecnico_tareas.jinja')
+    return render_template('formulario_tecnico_tareas.jinja', tabla = tareaNula)
 
 @app.route("/admin/formularioUsuarios" , methods=["GET","POST"])
 def usuario():
@@ -281,6 +282,65 @@ def robot_tecnico():
 
 
     return render_template('formulario_tecnico_robots.jinja')
+
+@app.route("/admin/formularioUsuarios/<id_u>", methods=["GET","POST"])
+def editarUsuario(id_u):
+    usuarioSE =  db.session.query(Users).get(id_u)
+    print(usuarioSE)
+    return render_template('formulario_tecnico_usuario.jinja')
+
+
+
+@app.route("/doctor/edit/<id>", methods=["GET","POST"])
+def edit(id):
+    fila_1 = db.session.query(Tabla_Medico).get(id)
+    if request.method == 'POST':
+        id_robot = request.form['id_robot']
+        name_robot = request.form['name_robot']
+        id_tarea = request.form['id_Tareas']
+        tipo_tarea = request.form['tipoTarea']
+
+        if tipo_tarea == '...':
+             estado="Disponible"
+        else:
+             estado="Ocupado"
+
+        fila = db.session.query(exists().where(Tabla_Medico.id_robot == id_robot)).scalar()
+
+        if (fila):
+            messagebox.showinfo(message="No se puede asignar", title="ERROR")
+            return render_template('')
+
+        else: 
+            fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, realizando_tarea=estado,tipoTarea = tipo_tarea)
+            db.session.add(fila)
+            if(fila != None):
+                db.session.delete(fila_1)
+                db.session.commit()
+            return render_template('formularioPrueba.jinja', tablas = fila_1)
+    return render_template('formularioPrueba.jinja', tablas = fila_1)
+
+    
+@app.route("/admin/editarTareas/<id>", methods=["GET","POST"])
+def edit_tareas(id):
+    tarea_1 = db.session.query(Tareas).get(id)
+
+    if request.method == 'POST':
+        id_tarea = request.form['id']
+        descripcion_tarea= request.form['descripcionTarea']
+        tipo_tarea = request.form['tipo']
+
+        tarea = Tareas(id = id_tarea, descripcionTarea = descripcion_tarea, tipo = tipo_tarea)
+        db.session.add(tarea)
+        if(tarea != None):
+            db.session.delete(tarea_1)
+            db.session.commit()
+        return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
+
+        
+    return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
+
+
 
 if __name__ == "__main__":
     app.app_context().push()
