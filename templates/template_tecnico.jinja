@@ -55,62 +55,14 @@
                   </div>
                 </div>
               </div>
-      </div>
-    
-
-    <div class="container">
-      {# <div class="row"> #}
-        <div class="row justify-content-md-star">
-          {# <div class="col col-lg-2">#}
-            
-          </div>
-        </div>
-    <fieldset class="col-md-4 d-flex justify-content-center align-self-center">
-        <form class="row px-3" method="POST" action="/upload" enctype="multipart/form-data">
-
-            <div>
-                <div class="text-left margen padd">
-                  <div class="dropdown">
-                    <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Usuarios
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="/admin/formularioUsuarios">Registrar nuevo usuario</a>
-                      <a class="dropdown-item" href="#">Editar</a>
-                      <a class="dropdown-item" href="#">Eliminar usuario</a>
-                    </div>
-                </div>
-                </div>
-                <div class="text-left margen padd">
-                  <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tabla de Tareas
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/admin/formularioTareas">Añadir una nueva tarea</a>
-                    <a class="dropdown-item" href="#">Editar</a>
-                    <a class="dropdown-item" href="#">Eliminar</a>
-                  </div>
-                </div>
-                <div class="text-left margen padd">
-                  <button class="btn btn-dark btn-lg dropdown-toggle editar" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tabla de Robots
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/admin/formularioRobots">Registrar un nuevo robot</a>
-                    <a class="dropdown-item" href="#">Editar</a>
-                    <a class="dropdown-item" href="#">Eliminar</a>
-                  </div>
-                </div>
-            </div>
-        </form>
-        <form class="row px-8" method="POST" action="/upload" enctype="multipart/form-data">
-          
-        </form>
-    </fieldset>
+    </div>
+              
     <fieldset class="text-black col-md-8 px-3">
+
       <form method="GET" class="mt-5 row justify-content-center">
-        <div id = user-div name="user-div">
-          <table class="table table-hover table-sortable"> <h2>Lista de Usuarios</h2>
+        <div class = "row" id = user-div name="user-div">
+          <table class="table table-hover table-sortable"> 
+            <h2 class = "text-center">Lista de Usuarios</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Usuario </th>
@@ -139,11 +91,13 @@
               {% endfor %}
             </tbody>
           </table>
+        <a class="btn btn-secondary" href="/admin/formularioUsuarios">Registre un nuevo usuario</a>
         </div>
       </form>
       <form method="GET" class="mt-5 row justify-content-center">
-        <div id = task-div name="task-div">
-          <table class="table table-hover table-sortable"> <h2>Lista de Tareas</h2>
+        <div class = "row" id = task-div name="task-div">
+          <table class="table table-hover table-sortable"> 
+            <h2 class = "text-center">Lista de Tareas</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Tareas </th>
@@ -163,12 +117,14 @@
               {% endfor %}
             </tbody>
           </table>
+        <a class="btn btn-secondary" href="/admin/formularioTareas">Añadir tarea</a>
         </div>
       </form>
 
       <form method="GET" class="mt-5 row justify-content-center">
-        <div id = robot-div name="robot-div">
-          <table class="table table-hover table-sortable"> <h2>Lista de Robots</h2>
+        <div class="row" id = robot-div name="robot-div">
+          <table class="table table-hover table-sortable"> 
+            <h2 class = "text-center">Lista de Robots</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Robot </th>
@@ -192,6 +148,7 @@
               {% endfor %}
             </tbody>
           </table>
+        <a class="btn btn-secondary btn-block" href="/admin/formularioRobots">Añadir robot</a>
         </div>
       </form>
   </fieldset>
