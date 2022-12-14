@@ -12,33 +12,52 @@
 
     <div class="main-container row p-5 mx-0" style="height: 500px">
         <legend>{{name}}</legend>
+          <p class="padd">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                    officia deserunt mollit anim id est laborum.
+                </p>
         <fieldset class="col-md-5 d-flex justify-content-left align-items-center">
             <form class="row px-3" method="POST" action="/upload" enctype="multipart/form-data">
                 <div>
-                    <p>
-                        Información robot .. Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..Información robot ..
-                    </p>
+                    <table class="table table-hover table-sortable"> 
+            <h2 class = "text-center">Información del robot</h2>
+            <thead>
+              <tr>
+                <th scope="col"> ID Robot </th>
+                <th scope="col"> Nombre Robot </th>
+                <th scope="col"> Tarea actual </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for robot in robots %}
+                <tr>
+                  <td>{{robot.id}}</td>
+                  <td>{{robot.name}}</td>
+                  <td>{{robot.tipoTarea}}</td>
+                </tr> 
+              {% endfor %}
+            </tbody>
+          </table>
                 </div>
             </form>
         </fieldset>
         <fieldset class="text-black col-md-6 px-3">
             <form method="GET" class="mt-5 row">
                 <div>
-                    <table class="table table-sortable"> <h2>Lista de robots</h2>
+                    <table class="table table-sortable"> <h2>Historial</h2>
                         <thead>
                             <tr>
-                                <th scope="col">Column1</th>
-                                <th scope="col">Column2</th>
-                                <th scope="col">Column3</th>
-                                <th scope="col">Column4</th>
+                                <th scope="col">Historial</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
                                 <td>value1</td>
-                                <td>value2</td>
-                                <td>value3</td>
                             </tr>
                         </tbody>
                     </table>

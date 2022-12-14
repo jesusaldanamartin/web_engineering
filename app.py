@@ -199,9 +199,10 @@ def delete_robot(id_t):
 
     return redirect(url_for('admin'))
 
-@app.route("/doctor/<robot_name>")
-def robot(robot_name):
-    return render_template('template_robot.jinja', name=robot_name)
+@app.route("/doctor/<id>")
+def robot(id):
+    robot = db.session.query(Robots).get(id)
+    return render_template('template_robot.jinja', robot= robot)
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():
