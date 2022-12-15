@@ -75,10 +75,20 @@ class Robots(db.Model):
     def __repr__(self):
         return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} date={self.date}>"
 
+class Historial(db.Model):
+    __tablename__ = 'Historial'
+    id = db.Column(db.String(150), nullable=False, primary_key= True)
+    id_robot = db.Column(db.String(150), db.ForeignKey(Robots.id))
+    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
+    date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Robot id={self.id} id_robot={self.id_robot} id_Tarea={self.id_Tareas} date={self.date}>"
+
 class Tabla_Medico(db.Model):
     __tablename__ = 'Tabla medico'
-    id_robot = db.Column(db.String(150), nullable=False, primary_key= True)
-    name_robot = db.Column(db.String(150), db.ForeignKey(Robots.name))
+    id_robot = db.Column(db.String(150),db.ForeignKey(Robots.id))
+    name_robot = db.Column(db.String(150),nullable=False, primary_key= True )
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
     estado = db.Column(db.String(150),nullable=False )
     tipoTarea = db.Column(db.String(150), nullable=False)
@@ -132,8 +142,8 @@ def inserts():
     robotJ = Robots(id = "9", name = "Robot-J", id_Tareas = "400")
  
 
-    accion1 = Tabla_Medico(id_robot="0", name_robot="Robot1", id_Tareas="100", estado="Ocupado",tipoTarea="Limpieza pasillo" )
-    accion2 = Tabla_Medico(id_robot="1", name_robot="Robot2", id_Tareas="200", estado="Disponible",tipoTarea="..." )
+    accion1 = Tabla_Medico(id_robot="0", name_robot="Robot-A", id_Tareas="100", estado="Ocupado",tipoTarea="Limpieza pasillo" )
+    accion2 = Tabla_Medico(id_robot="1", name_robot="Robot-B", id_Tareas="200", estado="Disponible",tipoTarea="..." )
 
     #asg_tareas = AsignarTareasRobots(tipo_tarea="Limpieza",tipo_tarea_asignada="...",id_Tareas="100",nombre_robot="",id_robot=,estado=)
 
@@ -280,9 +290,20 @@ def delete_robot(id_t):
 @app.route("/doctor/<id>")
 def robot(id):
     robot = db.session.query(Robots).get(id)
-    acciones = db.session.query(Tabla_Medico).filter_by(name_robot=robot.name)
+    id_tarea = robot.id_Tareas
+    tarea_exists = db.session.query(Tareas).get(id_tarea)
+    historial_exits = db.session.query(exists().where(Historial.id_robot == id)).scalar()
+    historial = db.session.query(Historial).get(id_tarea)
+        
+    return render_template('template_robot.jinja', robot= robot, tarea=tarea_exists, historial=historial)
 
-    return render_template('template_robot.jinja', robot= robot, acciones = acciones)
+@app.route("/doctor/deleteHistorial")
+def delete_historial(id):
+
+    hsitorial = db.session.query(Historial).all()
+    db.session.delete(hsitorial)
+    db.session.commit()
+    return redirect(url_for('doctor/deleteHistorial'))
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():
@@ -373,10 +394,9 @@ def editarUsuario(id_u):
     return render_template('formulario_tecnico_usuario.jinja')
 
 
-
-@app.route("/doctor/asignarTareas/<id>", methods=["GET","POST"])
-def edit(id):
-    fila_1 = db.session.query(Tabla_Medico).get(id)
+@app.route("/asignacionTareas/<name>", methods=["GET","POST"])
+def edit_prueba(name):
+    fila_1 = db.session.query(Tabla_Medico).get(name)
     tarea = db.session.query(Tareas).all()
     print(tarea)
     if request.method == 'POST':
@@ -399,11 +419,50 @@ def edit(id):
         else: 
             fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, estado=estado,tipoTarea = tipo_tarea)
             db.session.add(fila)
+            historial = Historial(id = id_robot, id_robot=id_robot, id_tarea=id_tarea)
+            db.session.add(historial)
+            db.session.commit()
             if(fila != None):
                 db.session.delete(fila_1)
                 db.session.commit()
             return render_template('formulario_tabla_medico.jinja', tablas = fila_1 , tarea = tarea)
+
     return render_template('formulario_tabla_medico.jinja', tablas = fila_1, tarea=tarea)
+
+@app.route("/doctor/asignarTareas/<name>", methods=["GET","POST"])
+def edit_ro(name):
+    fila_1 = db.session.query(Tabla_Medico).get(name)
+    tarea = db.session.query(Tareas).all()
+    print(tarea)
+    if request.method == 'POST':
+        id_robot = request.form['id_robot']
+        name_robot = request.form['name_robot']
+        id_tarea = request.form['id_Tareas']
+        tipo_tarea = request.form['tipoTarea']
+
+        if tipo_tarea == '...':
+             estado="Disponible"
+        else:
+             estado="Ocupado"
+
+        fila = db.session.query(exists().where(Tabla_Medico.id_robot == id_robot)).scalar()
+
+        if (fila):
+            messagebox.showinfo(message="No se puede asignar", title="ERROR")
+            return render_template('')
+
+        else: 
+            fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, estado=estado,tipoTarea = tipo_tarea)
+            db.session.add(fila)
+            historial = Historial(id = id_robot, id_robot=id_robot, id_tarea=id_tarea)
+            db.session.add(historial)
+            db.session.commit()
+            if(fila != None):
+                db.session.delete(fila_1)
+                db.session.commit()
+            return render_template('template_nuevo.jinja', tablas = fila_1 , tarea = tarea)
+
+    return render_template('template_nuevo.jinja', tablas = fila_1, tarea=tarea)
 
 @app.route("/doctor/formularioIncidencia", methods=["GET","POST"])
 def incidencia():
