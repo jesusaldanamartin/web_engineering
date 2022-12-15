@@ -18,30 +18,30 @@
       </nav>
     </div>
     <div class="row col-md-10 px-3">
-      <legend>Técnico</legend>
-      <p class="padd">
+      <legend><h1 class="my_black bot4">Administrador</h1></legend>
+      {#<p class="padd my_black">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
         officia deserunt mollit anim id est laborum.
-      </p>
+      </p>#}
     </div>
-    <div class="row col-md-10 px-3">
+    <div class="row col-md-10 px-3 bot4">
       <div class="col col-lg-2 mx-4">
-        <button type="button" class="btn btn-primary btn-lg" id="show-user-div">Ocultar Usuarios</button>
+        <button type="button" class="btn btn-secondary btn-lg bot_inicio" id="show-user-div">Ocultar Usuarios</button>
       </div>
       <div class="col col-lg-2 mx-4">
-        <button type="button" class="btn btn-primary btn-lg" id="show-task-div">Mostrar Tareas</button>
+        <button type="button" class="btn btn-secondary btn-lg bot_inicio" id="show-task-div">Mostrar Tareas</button>
       </div>
       <div class="col col-lg-2 mx-4">
-        <button type="button" class="btn btn-primary btn-lg" id="show-robot-div">Mostrar Robots</button>
+        <button type="button" class="btn btn-secondary btn-lg bot_inicio" id="show-robot-div">Mostrar Robots</button>
       </div>
       <div class="col col-lg-2 mx-4">
-        <button type="button" class="btn btn-primary btn-lg" id="show-incidencia-div">Mostrar Incidencias</button>
+        <button type="button" class="btn btn-dark btn-lg asignar" id="show-incidencia-div">Mostrar Incidencias</button>
       </div>
       <div class="col col-lg-2 mx-4">
-        <button type="button" class="btn btn-primary btn-lg" id="show-everything">Mostrar Todo</button>
+        <button type="button" class="btn btn-secondary btn-lg bot_inicio" id="show-everything">Mostrar Todo</button>
       </div>
     </div>
 
@@ -73,13 +73,13 @@
                     <td>{{user.status}}</td>
                     <td>{{user.date}}</td>
                     <td>
-                      <a class="btn btn-secondary" href="/deleteUsuario/{{user.id}}">Eliminar</a>
+                      <a class="btn btn-secondary bot_inicio" href="/deleteUsuario/{{user.id}}">Eliminar</a>
                     </td>
                   </tr>
               {% endfor %}
             </tbody>
           </table>
-          <a class="btn btn-secondary" href="/admin/formularioUsuarios">Registre un nuevo usuario</a>
+          <a class="btn btn-secondary bot_inicio" href="/admin/formularioUsuarios">Registre un nuevo usuario</a>
         </div>
       </form>
       <form method="GET" class="mt-5 row justify-content-center">
@@ -101,13 +101,13 @@
                 <td>{{task.tipo_tarea}}</td>
                 <td>{{task.date}}</td>
                 <td>
-                  <a class="btn btn-secondary" href="/admin/formularioTareas/{{ task.id }}">Editar</a>
+                  <a class="btn btn-secondary bot_inicio" href="/admin/formularioTareas/{{ task.id }}">Editar</a>
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-          <a class="btn btn-secondary" href="/admin/formularioTareas">Añadir tarea</a>
+          <a class="btn btn-secondary bot_inicio" href="/admin/formularioTareas">Añadir tarea</a>
         </div>
       </form>
 
@@ -136,7 +136,7 @@
               {% endfor %}
             </tbody>
           </table>
-          <a class="btn btn-secondary btn-block" href="/admin/formularioRobots">Añadir robot</a>
+          <a class="btn btn-secondary btn-block bot_inicio" href="/admin/formularioRobots">Añadir robot</a>
         </div>
       </form>
 
