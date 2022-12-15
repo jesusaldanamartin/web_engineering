@@ -14,7 +14,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-custom">
                     <li class="breadcrumb-item"><a href="/doctor" data-abc="true">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><span>Info Robot</span></li>
+                    <li class="breadcrumb-item active" aria-current="page"><span>Información de los robots del hospital</span></li>
                 </ol>
             </nav>
         </div>
@@ -23,19 +23,21 @@
                 <legend>
                     <h2>{{robot.name}}</h2>
                 </legend>
+                {#<p class="padd">
+                {% if robot.id == "0" or "3" or "6" or "8" %}
+                    <P>LIMPIEZA {{robot.id}}</P>
+                    {% if robot.id == "1" or "5" or "7" or "9" %}
+                        <P>Transporte {{robot.id}}</P>
+                    {% endif %}
+                        {% if robot.id == "4" %}
+                            <P>Telemedicina {{robot.id}}</P>
+                            <img src="../static/images/telemedicina.png" alt="telemedicina" width="900" height="600">
+                        {% endif %}
+                {% endif %}
+                </p>#}
             </div>
-            <div class="col-sm-3"><button type="button" onclick="location.href='/doctor/formularioIncidencia'"
-                    class="btn btn-danger btn-lg">Redactar Incidencia</button></div>
-            <p class="padd">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui
-                officia deserunt mollit anim id est laborum.
-            </p>
         </div>
-        <div class="row col-md-10 px-3 bot">
+        <div class="row col-md-10 px-3 bot3">
             <fieldset class="col-md-5 d-flex justify-content-left align-items-center">
                 <form class="row px-3" method="POST" action="/upload" enctype="multipart/form-data">
                     <div>
@@ -59,38 +61,8 @@
                     </div>
                 </form>
             </fieldset>
-            <fieldset class="text-black col-md-6 px-3 bot">
+            <fieldset class="text-black col-md-6 px-3 bot3">
                 <form method="GET" class="mt-5 row">
-                    <div>
-                        <table class="table table-hover table-sortable">
-                            <h2 class="text-center">Historial tareas</h2>
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID Robot</th>
-                                    <th scope="col">Nombre robot</th>
-                                    <th scope="col">ID Tarea</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Realizando tarea</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">EstadoTiempo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for tablas in acciones %}
-                                <tr>
-                                    <td>{{tablas.id_robot}}</td>
-                                    <td>{{tablas.name_robot}}</td>
-                                    <td>{{tablas.id_Tareas}}</td>
-                                    <td>{{tablas.realizando_tarea}}</td>
-                                    <td>{{tablas.tipoTarea}}</td>
-                                    <td>{{tablas.date}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-                {# <form method="GET" class="mt-5 row">
                     <div>
                         <table class="table table-sortable">
                             <h2>Historial</h2>
@@ -113,8 +85,6 @@
                                 <a class="btn btn-secondary" href="/doctor/deleteHistorial">Eliminar Historial</a>
                                 </td>
                     </div>
-                </form>
-                </legend> #}
             </fieldset>
         </div>
     </div>

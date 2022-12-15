@@ -26,7 +26,7 @@
       </div>
       <div class="col-sm-3"><button type="button" onclick="location.href='/doctor/formularioIncidencia'" class="btn btn-dark btn-lg asignar">Redactar Incidencia</button></div>
     </div>
-    <fieldset class="text-black col-md-10 px-3 bot3">
+    <fieldset class="text-black col-md-10 px-3">
       <form method="GET" class="mt-5 row justify-content-center table-sortable">
         <div>
           <table class="table">
@@ -36,7 +36,7 @@
                 <th scope="col">Nombre robot</th>
                 <th scope="col">ID Tarea</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Tarea asignada</th>
+                <th scope="col">Tarea que realiza</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Asignar tarea</th>
               </tr>
@@ -45,13 +45,13 @@
               {% for tablas in acciones %}
               <tr>
                 <td>{{tablas.id_robot}}</td>
-                <td><a href="/doctor/{{tablas.id_robot}}">{{tablas.name_robot}}</td>
+                <td><a href="/doctor/{{tablas.id_robot}}" style="color: #4e1966">{{tablas.name_robot}}</td>
                 <td>{{tablas.id_Tareas}}</td>
                 <td>{{tablas.estado}}</td>
                 <td>{{tablas.tipoTarea}}</td>
                 <td>{{tablas.date}}</td>
                 <td>
-                  <a href="/asignacionTareas/{{tablas.name_robot}}">Asignar</a>
+                  <a class="btn btn-secondary bot_inicio" href="/asignacionTareas/{{tablas.name_robot}}">Asignar</a>
                 </td>
                 </tr>
               {% endfor %}

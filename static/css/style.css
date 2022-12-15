@@ -43,12 +43,12 @@ background: radial-gradient(circle, rgba(238,174,202,1) 17%, rgba(237,160,255,1)
 }
 
 .texto{
-    color: rgb(0, 0, 0);
+    color: rgb(81, 2, 83);
     font-size: 60px;
 }
 
 .texto2{
-    color: rgb(0, 0, 0);
+    color: rgb(56, 0, 37);
     font-size: 50px;
 }
 
@@ -145,7 +145,7 @@ background: radial-gradient(circle, rgba(238,174,202,1) 17%, rgba(237,160,255,1)
 }
 
 .bot3{
-    padding-bottom: 4.2cm;
+    padding-bottom: 4.4cm;
 }
 
 ---------  Breadcrumb
