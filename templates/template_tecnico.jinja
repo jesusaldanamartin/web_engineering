@@ -1,8 +1,8 @@
 {% extends 'base.jinja' %}
 
 {% block head %}
-  <title> Robots Asistenciales</title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title> Robots Asistenciales</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% endblock %}
 
 {% block content %}
@@ -10,62 +10,48 @@
 <body class="bg">
 
   <div class="main-container row p-5 mx-0 justify-content-center align-self-center">
-    <legend>Técnico</legend>
-          <p class="padd">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                    officia deserunt mollit anim id est laborum.
-                </p>
-    {# <div class="text-left">
-      <button type="button" class="btn btn-dark btn-lg incidencias my_black"> Incidencias </button>
-    </div> #}
-    <div class="col col-lg-2">
-        <button type="button" class="btn btn-primary btn-lg" id="show-user-div">Ocultar Usuarios</button>          
+    <div class="row col-md-10 px-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item active" aria-current="page"><span>Home</span></li>
+        </ol>
+      </nav>
     </div>
-    <div class="col col-lg-2">
-        <button type="button" class="btn btn-primary btn-lg" id="show-task-div">Mostrar Tareas</button>          
+    <div class="row col-md-10 px-3">
+      <legend>Técnico</legend>
+      <p class="padd">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+        officia deserunt mollit anim id est laborum.
+      </p>
     </div>
-    <div class="col col-lg-2">
-        <button type="button" class="btn btn-primary btn-lg" id="show-robot-div">Mostrar Robots</button>          
+    <div class="row col-md-10 px-3">
+      <div class="col col-lg-2 mx-4">
+        <button type="button" class="btn btn-primary btn-lg" id="show-user-div">Ocultar Usuarios</button>
+      </div>
+      <div class="col col-lg-2 mx-4">
+        <button type="button" class="btn btn-primary btn-lg" id="show-task-div">Mostrar Tareas</button>
+      </div>
+      <div class="col col-lg-2 mx-4">
+        <button type="button" class="btn btn-primary btn-lg" id="show-robot-div">Mostrar Robots</button>
+      </div>
+      <div class="col col-lg-2 mx-4">
+        <button type="button" class="btn btn-danger btn-lg" id="show-incidencia-div">Mostrar Incidencias</button>
+      </div>
+      <div class="col col-lg-2 mx-4">
+        <button type="button" class="btn btn-primary btn-lg" id="show-everything">Mostrar Todo</button>
+      </div>
     </div>
-    <div class="col col-lg-2">
-        <button type="button" class="btn btn-primary btn-lg" id="show-everything">Mostrar Todo</button>          
-    </div>
-    <div class="col col-lg-2">
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
-                Incidencias
-              </button>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Informe Incidencia</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-    </div>
-              
+
+
     <fieldset class="text-black col-md-8 px-3 bot">
 
       <form method="GET" class="mt-5 row justify-content-center">
-        <div class = "row" id = user-div name="user-div">
-          <table class="table table-hover table-sortable"> 
-            <h2 class = "text-center">Lista de Usuarios</h2>
+        <div class="row" id=user-div name="user-div">
+          <table class="table table-hover table-sortable">
+            <h2 class="text-center">Lista de Usuarios</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Usuario </th>
@@ -79,28 +65,28 @@
             </thead>
             <tbody>
               {% for user in usuarios %}
-                <tr>
-                  <td>{{user.id}}</td>
-                  <td>{{user.name}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.password}}</td>
-                  <td>{{user.status}}</td>
-                  <td>{{user.date}}</td>
-                    <td> 
-                     <a class="btn btn-secondary" href="/deleteUsuario/{{user.id}}">Eliminar</a>
-                    </td>
-                </tr> 
-                </tr> 
+              <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.status}}</td>
+                <td>{{user.date}}</td>
+                <td>
+                  <a class="btn btn-secondary" href="/deleteUsuario/{{user.id}}">Eliminar</a>
+                </td>
+              </tr>
+              </tr>
               {% endfor %}
             </tbody>
           </table>
-        <a class="btn btn-secondary" href="/admin/formularioUsuarios">Registre un nuevo usuario</a>
+          <a class="btn btn-secondary" href="/admin/formularioUsuarios">Registre un nuevo usuario</a>
         </div>
       </form>
       <form method="GET" class="mt-5 row justify-content-center">
-        <div class = "row" id = task-div name="task-div">
-          <table class="table table-hover table-sortable"> 
-            <h2 class = "text-center">Lista de Tareas</h2>
+        <div class="row" id=task-div name="task-div">
+          <table class="table table-hover table-sortable">
+            <h2 class="text-center">Lista de Tareas</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Tareas </th>
@@ -112,26 +98,26 @@
             </thead>
             <tbody>
               {% for task in tareas %}
-                <tr>
-                  <td>{{task.id}}</td>
-                  <td>{{task.descripcionTarea}}</td>
-                  <td>{{task.tipo}}</td>
-                  <td>{{task.date}}</td>
-                  <td> 
-                     <a class="btn btn-secondary" href="/admin/formularioTareas/{{ task.id }}">Editar</a>
-                  </td>
-                </tr> 
+              <tr>
+                <td>{{task.id}}</td>
+                <td>{{task.descripcionTarea}}</td>
+                <td>{{task.tipo}}</td>
+                <td>{{task.date}}</td>
+                <td>
+                  <a class="btn btn-secondary" href="/admin/formularioTareas/{{ task.id }}">Editar</a>
+                </td>
+              </tr>
               {% endfor %}
             </tbody>
           </table>
-        <a class="btn btn-secondary" href="/admin/formularioTareas">Añadir tarea</a>
+          <a class="btn btn-secondary" href="/admin/formularioTareas">Añadir tarea</a>
         </div>
       </form>
 
       <form method="GET" class="mt-5 row justify-content-center">
-        <div class="row" id = robot-div name="robot-div">
-          <table class="table table-hover table-sortable"> 
-            <h2 class = "text-center">Lista de Robots</h2>
+        <div class="row" id=robot-div name="robot-div">
+          <table class="table table-hover table-sortable">
+            <h2 class="text-center">Lista de Robots</h2>
             <thead>
               <tr>
                 <th scope="col"> ID Robot </th>
@@ -144,26 +130,50 @@
             </thead>
             <tbody>
               {% for robot in robots %}
-                <tr>
-                  <td>{{robot.id}}</td>
-                  <td>{{robot.name}}</td>
-                  <td>{{robot.id_Tareas}}</td>
-                  <td>{{robot.tipoTarea}}</td>
-                  <td>{{robot.date}}</td>
+              <tr>
+                <td>{{robot.id}}</td>
+                <td>{{robot.name}}</td>
+                <td>{{robot.id_Tareas}}</td>
+                <td>{{robot.tipoTarea}}</td>
+                <td>{{robot.date}}</td>
 
-                </tr> 
+              </tr>
               {% endfor %}
             </tbody>
           </table>
-        <a class="btn btn-secondary btn-block" href="/admin/formularioRobots">Añadir robot</a>
+          <a class="btn btn-secondary btn-block" href="/admin/formularioRobots">Añadir robot</a>
         </div>
       </form>
-  </fieldset>
+
+      <form method="GET" class="mt-5 row justify-content-center">
+        <div class="row" id=incidencia-div name="incidencia-div">
+          <table class="table table-hover table-sortable">
+            <h2 class="text-center">Lista Incidencias</h2>
+            <thead>
+              <tr>
+                <th scope="col"> ID Incidencia </th>
+                <th scope="col"> Asunto </th>
+                <th scope="col"> Informe </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for incidencia in incidencias %}
+              <tr>
+                <td>{{incidencia.id}}</td>
+                <td>{{incidencia.asunto}}</td>
+                <td>{{incidencia.informe}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </fieldset>
   </div>
   <div class="bot"></div>
-{% endblock %}
+  {% endblock %}
 
-{% block scripts %}
+  {% block scripts %}
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -172,4 +182,4 @@
     integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
     </script>
 
-{% endblock %}
+  {% endblock %}
