@@ -9,6 +9,7 @@ from wtforms.validators import InputRequired, Email, Length
 from sqlalchemy.sql import exists, select
 from sqlalchemy import exc
 from flask_bootstrap import Bootstrap
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
@@ -69,6 +70,7 @@ class Robots(db.Model):
     name = db.Column(db.String(150), nullable=False)
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    estado = db.Column(db.String(150), nullable=True)
 
     def __repr__(self):
         return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} date={self.date}>"
@@ -91,6 +93,10 @@ class Tabla_Medico(db.Model):
     estado = db.Column(db.String(150),nullable=False )
     tipoTarea = db.Column(db.String(150), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    estado = db.Column(db.String(150), nullable=True)
+    
+    def __iter__(self):
+        return self
 
     def __repr__(self):
         return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} realizandoTarea={self.realizando_tarea} date={self.date}>"
@@ -190,6 +196,8 @@ def inserts():
     db.session.commit()
     db.session.add(accion2)
     db.session.commit()
+    # db.session.add(accion3)
+    # db.session.commit()
 
 
 #* --- RUTAS DE FLASK ---
@@ -243,6 +251,11 @@ def doctor():
     robots_db = db.session.query(Robots).all()
     tareas_db = db.session.query(Tareas).all()
     accion_db = db.session.query(Tabla_Medico).all()
+    # ini_time_for_now = datetime.now()
+    # for elems in accion_db:
+    #     new_final_time = ini_time_for_now - \
+    #              accion_db.testimado
+    
 
     #for task in tareas_db: print(task.name)
     #for robot in robots_db: print(robot.name)
