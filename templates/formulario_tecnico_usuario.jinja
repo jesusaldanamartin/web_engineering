@@ -9,9 +9,17 @@
 
 <body class="bg">
     <fieldset class="main-container row p-5 mx-0 justify-content-center align-self-center">
-        <div class="main-container row p-5 mx-0 justify-content-center align-self-center">
-            <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Formulario Usuarios</h1>
-            <form class="main-container row p-5 mx-0 justify-content-center align-self-center" method="post"
+        <div class="main-container row p-3 mx-0 justify-content-center align-self-center">
+            <div class="row col-md-10 px-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-custom">
+                        <li class="breadcrumb-item"><a href="/admin" data-abc="true">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><span>Formulario Usuario</span></li>
+                    </ol>
+                </nav>
+            </div>
+            <h1 class="main-container row p-2 mx-0 justify-content-center align-self-center">Formulario Usuarios</h1>
+            <form class="main-container row p-2 mx-0 justify-content-center align-self-center" method="post"
                 name="formulario_lista_tareas">
 
                 <div class="card">
@@ -34,26 +42,29 @@
                                 </div>
                             </div>
                             <!-- Email input -->
-                             <div class="form-group row mb-4">
+                            <div class="form-group row mb-4">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Email">
                                 </div>
                             </div>
 
-                             <!-- password input -->
-                             <div class="form-group row mb-4">
+                            <!-- password input -->
+                            <div class="form-group row mb-4">
                                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Password">
                                 </div>
                             </div>
 
-                             <!-- Status input -->
-                             <div class="form-group row mb-4">
+                            <!-- Status input -->
+                            <div class="form-group row mb-4">
                                 <label for="status" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-10">
-                                    <input type="status" class="form-control" id="status" name="status" placeholder="Status">
+                                    <input type="status" class="form-control" id="status" name="status"
+                                        placeholder="Status">
                                 </div>
                             </div>
 
@@ -62,20 +73,20 @@
                                 Crear Usuario
                             </button>
                             <!--Limpiar Tarea button -->
-                            <button type="submit" class="btn btn-block mb-4 bot_inicio">
-                                Limpiar
-                            </button>
+                            <input type="reset" value="Limpiar" class="btn btn-block mb-4 bot_inicio">
 
                             {% for mesg in get_flashed_messages() %}
-                                {% if mesg == '¡Usuario creado con éxito!' %}
-                                    <div class = "text-center alert alert-success">
-                                        <p style="color: green;">{{ mesg }}<p>
-                                    </div>
-                                {% else %}
-                                    <div class = "text-center alert alert-danger ">
-                                        <p style="color: red;">{{ mesg }}<p></p>
-                                    </div> 
-                                {% endif %}
+                            {% if mesg == '¡Usuario creado con éxito!' %}
+                            <div class="text-center alert alert-success">
+                                <p style="color: green;">{{ mesg }}
+                                <p>
+                            </div>
+                            {% else %}
+                            <div class="text-center alert alert-danger ">
+                                <p style="color: red;">{{ mesg }}
+                                <p></p>
+                            </div>
+                            {% endif %}
                             {% endfor %}
                         </form>
                     </div>
