@@ -49,13 +49,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
+=======
                                 {# {% for robot in robots %} #}
+>>>>>>> 07479ca069f3280fdf91d1a97ff4822f697b3d43
                                 <tr>
                                     <td>{{robot.id}}</td>
                                     <td>{{robot.name}}</td>
-                                    <td>{{robot.tipoTarea}}</td>
+                                    <td>{{tarea.tipo_tarea}}</td>
                                 </tr>
+<<<<<<< HEAD
+=======
                                 {# {% endfor %} #}
+>>>>>>> 07479ca069f3280fdf91d1a97ff4822f697b3d43
                             </tbody>
                         </table>
                     </div>
@@ -100,15 +106,20 @@
                                 <tr>
                                     <th scope="col">Historial</th>
                                     <th scope="col"></th>
+                                    <th scope="col">Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>value1</td>
+                                    <td>{{historial.id_Tareas}}</td>
+                                    <td>{{historial.date}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                                <td>
+                                <a class="btn btn-secondary" href="/doctor/deleteHistorial">Eliminar Historial</a>
+                                </td>
                     </div>
                 </form>
                 </legend> #}
