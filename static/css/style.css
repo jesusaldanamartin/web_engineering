@@ -59,7 +59,7 @@
     display: block;
 }
 
-#task-div, #robot-div{
+#task-div, #robot-div, #incidencia-div{
     display: none;
 }
 
@@ -123,6 +123,14 @@
 
 .bot{
     padding-bottom: 2.3cm;
+}
+
+.bot2{
+    padding-bottom: 2.9cm;
+}
+
+.bot3{
+    padding-bottom: 4.2cm;
 }
 
 ---------  Breadcrumb
@@ -257,4 +265,3 @@ a:link{
    content: "/";
 }
 
----------  Breadcrumb

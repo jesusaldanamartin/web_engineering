@@ -53,3 +53,16 @@ btn4.addEventListener("click", function(){
         btn4.textContent = 'Ocultar Todo'
     }
 });
+
+const btn5 = document.querySelector("#show-incidencia-div")
+const container5 = document.querySelector("#incidencia-div")
+
+btn5.addEventListener("click", function(){
+    if(container5.style.display === "block"){
+        container5.style.display = "none";
+        btn5.textContent = 'Mostrar Incidencias'
+    } else{
+        container5.style.display = "block";
+        btn5.textContent = 'Ocultar Incidencias'
+    }
+});
