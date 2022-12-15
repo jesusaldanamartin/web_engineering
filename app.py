@@ -484,6 +484,7 @@ def incidencia():
         incidencia = Incidencias(asunto = asunto, informe = informe)
         db.session.add(incidencia)
         db.session.commit()
+        flash('¡Incidencia enviada!')
             
     
     return render_template('formulario_incidencia_medico.jinja')
