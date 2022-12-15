@@ -10,66 +10,78 @@
 <body class="bg">
     <fieldset class="main-container row p-5 mx-0 justify-content-center align-self-center">
         <div class="main-container row p-5 mx-0 justify-content-center align-self-center">
-            <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Asignación de Tareas</h1>
-            <form class="main-container row p-5 mx-0 justify-content-center align-self-center" method="post"
-                name="asignacion_tareas">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-custom">
+                    <li class="breadcrumb-item"><a href="/doctor" data-abc="true">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><span>Info Robot</span></li>
+                </ol>
+            </nav>
+        </div>
+        <h1 class="main-container row p-5 mx-0 justify-content-center align-self-center">Asignación de Tareas</h1>
+        <form class="main-container row p-5 mx-0 justify-content-center align-self-center" method="post"
+            name="asignacion_tareas">
 
-                <div class="card">
-                    <div class="card-body py-5 px-md-5">
-                        <form class="form_formulario_tecnico_usuario" action="/doctor/edit/<id>" method="POST">
+            <div class="card">
+                <div class="card-body py-5 px-md-5">
+                    <form class="form_formulario_tecnico_usuario" action="/doctor/edit/<id>" method="POST">
 
-                            <!-- ID input -->
-                            <div class="form-group row mb-4">
-                                <label for="id" class="col-sm-2 col-form-label">ID ROBOT</label>
-                                <div class="col-sm-10">
-                                        <input type="id_robot" class="form-control" id="id_robot" name="id_robot" placeholder="ID ROBOT" >
-                                </div>
+                        <!-- ID input -->
+                        <div class="form-group row mb-4">
+                            <label for="id" class="col-sm-2 col-form-label">ID ROBOT</label>
+                            <div class="col-sm-10">
+                                <input type="id_robot" class="form-control" id="id_robot" name="id_robot"
+                                    placeholder="ID ROBOT">
                             </div>
+                        </div>
 
-                            <!-- Nombre Robot input -->
-                            <div class="form-group row mb-4">
-                                <label for="name_robot" class="col-sm-2 col-form-label">Name</label>
-                                <div class="col-sm-10">
-                                    <input type="name_robot" class="form-control" id="name_robot" name="name_robot" placeholder="Name Robot">
-                                </div>
+                        <!-- Nombre Robot input -->
+                        <div class="form-group row mb-4">
+                            <label for="name_robot" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="name_robot" class="form-control" id="name_robot" name="name_robot"
+                                    placeholder="Name Robot">
                             </div>
-                            <!-- ID TAREAS input -->
-                             <div class="form-group row mb-4">
-                                <label for="id_Tareas" class="col-sm-2 col-form-label">ID TAREAS</label>
-                                <div class="col-sm-10">
-                                    <input type="id_Tareas" class="form-control" id="id_Tareas" name="id_Tareas" placeholder="ID TAREAS">
-                                </div>
-                            </div> 
-                             <!-- realizando Tarea input -->
-                             {# <div class="form-group row mb-4">
-                                <label for="realizando_tarea" class="col-sm-2 col-form-label">Realizando Tarea</label>
-                                <div class="col-sm-10">
-                                    <input type="realizando_tarea" class="form-control" id="realizando_tarea" name="realizando_tarea" placeholder="realizando_tarea">
-                                </div>
-                            </div>  #}
-
-                             <!-- Tipo Tarea input -->
-                             <div class="form-group row mb-4">
-                                <label for="tipoTarea" class="col-sm-2 col-form-label">Tipo Tarea</label>
-                                <div class="col-sm-10">
-                                    <input type="tipoTarea" class="form-control" id="tipoTarea" name="tipoTarea" placeholder="Tipo Tarea">
-                                </div>
+                        </div>
+                        <!-- ID TAREAS input -->
+                        <div class="form-group row mb-4">
+                            <label for="id_Tareas" class="col-sm-2 col-form-label">ID TAREAS</label>
+                            <div class="col-sm-10">
+                                <input type="id_Tareas" class="form-control" id="id_Tareas" name="id_Tareas"
+                                    placeholder="ID TAREAS">
                             </div>
+                        </div>
+                        <!-- realizando Tarea input -->
+                        {# <div class="form-group row mb-4">
+                            <label for="realizando_tarea" class="col-sm-2 col-form-label">Realizando Tarea</label>
+                            <div class="col-sm-10">
+                                <input type="realizando_tarea" class="form-control" id="realizando_tarea"
+                                    name="realizando_tarea" placeholder="realizando_tarea">
+                            </div>
+                        </div> #}
 
-                            
+                        <!-- Tipo Tarea input -->
+                        <div class="form-group row mb-4">
+                            <label for="tipoTarea" class="col-sm-2 col-form-label">Tipo Tarea</label>
+                            <div class="col-sm-10">
+                                <input type="tipoTarea" class="form-control" id="tipoTarea" name="tipoTarea"
+                                    placeholder="Tipo Tarea">
+                            </div>
+                        </div>
 
-                            <!-- Enviar Usuario button -->
-                            <button type="submit" class="btn btn-block mb-4 bot_inicio">
-                                Enviar
-                            </button>
-                            <!--Limpiar Tarea button -->
-                            <button type="submit" class="btn btn-block mb-4 bot_inicio">
-                                Limpiar
-                            </button>
-                        </form>
-                    </div>
+
+
+                        <!-- Enviar Usuario button -->
+                        <button type="submit" class="btn btn-block mb-4 bot_inicio">
+                            Enviar
+                        </button>
+                        <!--Limpiar Tarea button -->
+                        <button type="submit" class="btn btn-block mb-4 bot_inicio">
+                            Limpiar
+                        </button>
+                    </form>
                 </div>
-            </form>
+            </div>
+        </form>
         </div>
     </fieldset>
 </body>
