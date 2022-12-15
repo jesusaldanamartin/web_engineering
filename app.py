@@ -414,7 +414,7 @@ def edit_prueba(name):
 
         if (fila):
             flash("ERROR: No se puede asignar")
-            return render_template('template_medico.jinja')
+            return render_template('formulario_tabla_medico.jinja', tablas = fila_1, tarea=tarea)
 
         else: 
             fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, estado=estado,tipoTarea = tipo_tarea)
