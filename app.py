@@ -477,7 +477,7 @@ def incidencia():
     return render_template('formulario_incidencia_medico.jinja')
 
     
-@app.route("/admin/formularioTareas/<id>", methods=["GET","POST"])
+@app.route("/formularioTareas/<id>", methods=["GET","POST"])
 def edit_tareas(id):
     tarea_1 = db.session.query(Tareas).get(id)
  
@@ -494,8 +494,6 @@ def edit_tareas(id):
         return render_template('formulario_tecnico_tareas.jinja', tabla = tarea)
 
     return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
-
-
 
 if __name__ == "__main__":
     app.app_context().push()
