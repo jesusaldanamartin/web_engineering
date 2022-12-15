@@ -368,7 +368,7 @@ def edit(id):
         id_robot = request.form['id_robot']
         name_robot = request.form['name_robot']
         id_tarea = request.form['id_Tareas']
-        tipo_tarea = request.form['tipoTarea']
+        tipo_tarea = request.form['tipo_Tarea']
 
         if tipo_tarea == '...':
              estado="Disponible"
@@ -378,8 +378,8 @@ def edit(id):
         fila = db.session.query(exists().where(Tabla_Medico.id_robot == id_robot)).scalar()
 
         if (fila):
-            messagebox.showinfo(message="No se puede asignar", title="ERROR")
-            return render_template('')
+            flash("ERROR: No se puede asignar")
+            return render_template('template_medico.jinja')
 
         else: 
             fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, estado=estado,tipoTarea = tipo_tarea)
