@@ -20,6 +20,10 @@ Para ejecutar la aplicacion es suficiente instalando todas las librerias indicad
 - FLASK
 - SQLALCHEMY
 
+```Python
+pip install -r requirements.txt 
+```
+
 ---
 # Funcionalidades
 
