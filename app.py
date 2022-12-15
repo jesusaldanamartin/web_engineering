@@ -241,10 +241,10 @@ def doctor():
     robots_db = db.session.query(Robots).all()
     tareas_db = db.session.query(Tareas).all()
     accion_db = db.session.query(Tabla_Medico).all()
-    ini_time_for_now = datetime.now()
-    for elems in accion_db:
-        new_final_time = ini_time_for_now - \
-                 accion_db.testimado
+    # ini_time_for_now = datetime.now()
+    # for elems in accion_db:
+    #     new_final_time = ini_time_for_now - \
+    #              accion_db.testimado
     
 
     #for task in tareas_db: print(task.name)
