@@ -48,6 +48,15 @@ class Admin(db.Model):
     def __repr__(self):
         return '<admin %r>' % self.admin
 
+class Incidencias(db.Model):
+    __tablename__ = 'Incidencias'
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    asunto = db.Column(db.String(100), nullable=False)
+    informe = db.Column(db.String(300), nullable=False)
+
+    def __repr__(self):
+        return f"<Incidencia id={self.id} Asunto ={self.informe} Informe={self.informe}>"
+
 class Doctor(db.Model):
     __tablename__ = 'Doctors'
     doctor = db.Column(db.String(100), db.ForeignKey(Users.id), primary_key= True)
@@ -324,6 +333,20 @@ def edit(id):
                 db.session.commit()
             return render_template('formularioPrueba.jinja', tablas = fila_1)
     return render_template('formularioPrueba.jinja', tablas = fila_1)
+
+@app.route("/doctor/formularioIncidencia", methods=["GET","POST"])
+def incidencia():
+
+    if request.method == 'POST':
+        # id_incidencia = request.form['id']
+        asunto = request.form['asunto']
+        informe = request.form['informe']
+        incidencia = Incidencias(asunto = asunto, informe = informe)
+        db.session.add(incidencia)
+        db.session.commit()
+            
+    
+    return render_template('formulario_incidencia_medico.jinja')
 
     
 @app.route("/admin/formularioTareas/<id>", methods=["GET","POST"])
