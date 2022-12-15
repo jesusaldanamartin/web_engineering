@@ -163,6 +163,7 @@ def admin():
     usuarios_db = db.session.query(Users).all()
     tareas_db = db.session.query(Tareas).all()
     robots_db = db.session.query(Robots).all()
+    incidencias_db = db.session.query(Incidencias).all()
 
     #for user in usuarios_db: print(user.name)
     #for task in tareas_db: print(task.name)
