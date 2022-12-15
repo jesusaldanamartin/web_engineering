@@ -21,7 +21,7 @@
         <div class="row col-md-10 px-3">
             <div class="col-sm-9">
                 <legend>
-                    <h2>Medico</h2>
+                    <h2>{{robot.name}}</h2>
                 </legend>
             </div>
             <div class="col-sm-3"><button type="button" onclick="location.href='/doctor/formularioIncidencia'"
@@ -49,13 +49,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for robot in robots %}
+                                {# {% for robot in robots %} #}
                                 <tr>
                                     <td>{{robot.id}}</td>
                                     <td>{{robot.name}}</td>
                                     <td>{{robot.tipoTarea}}</td>
                                 </tr>
-                                {% endfor %}
+                                {# {% endfor %} #}
                             </tbody>
                         </table>
                     </div>
@@ -63,6 +63,37 @@
             </fieldset>
             <fieldset class="text-black col-md-6 px-3 bot">
                 <form method="GET" class="mt-5 row">
+                    <div>
+                        <table class="table table-hover table-sortable">
+                            <h2 class="text-center">Historial tareas</h2>
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID Robot</th>
+                                    <th scope="col">Nombre robot</th>
+                                    <th scope="col">ID Tarea</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Realizando tarea</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">EstadoTiempo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for tablas in acciones %}
+                                <tr>
+                                    <td>{{tablas.id_robot}}</td>
+                                    <td>{{tablas.name_robot}}</td>
+                                    <td>{{tablas.id_Tareas}}</td>
+                                    <td>{{tablas.realizando_tarea}}</td>
+                                    <td>{{tablas.tipoTarea}}</td>
+                                    <td>{{tablas.date}}</td>
+                                    {% if tablas.date > tablas.date %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                {# <form method="GET" class="mt-5 row">
                     <div>
                         <table class="table table-sortable">
                             <h2>Historial</h2>
@@ -81,7 +112,7 @@
                         </table>
                     </div>
                 </form>
-                </legend>
+                </legend> #}
             </fieldset>
         </div>
     </div>

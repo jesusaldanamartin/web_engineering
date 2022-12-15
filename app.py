@@ -9,6 +9,7 @@ from wtforms.validators import InputRequired, Email, Length
 from sqlalchemy.sql import exists, select
 from sqlalchemy import exc
 from flask_bootstrap import Bootstrap
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
@@ -71,6 +72,7 @@ class Robots(db.Model):
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
     tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    estado = db.Column(db.String(150), nullable=True)
 
     def __repr__(self):
         return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} date={self.date}>"
@@ -83,6 +85,10 @@ class Tabla_Medico(db.Model):
     realizando_tarea = db.Column(db.String(150),nullable=False )
     tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    estado = db.Column(db.String(150), nullable=True)
+    
+    def __iter__(self):
+        return self
 
     def __repr__(self):
         return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} realizandoTarea={self.realizando_tarea} date={self.date}>"
@@ -103,6 +109,7 @@ def inserts():
 
     accion1 = Tabla_Medico(id_robot=0, name_robot="Robot1", id_Tareas=1, realizando_tarea="Ocupado",tipoTarea="Limpieza pasillo" )
     accion2 = Tabla_Medico(id_robot=1, name_robot="Robot2", id_Tareas=1, realizando_tarea="Disponible",tipoTarea="..." )
+    #accion3 = Tabla_Medico(id_robot=2, name_robot="Robot1", id_Tareas=1, realizando_tarea="Ocupado",tipoTarea="Transporte medicamentos" )
 
     db.session.add(usr)
     db.session.commit()
@@ -123,6 +130,8 @@ def inserts():
     db.session.commit()
     db.session.add(accion2)
     db.session.commit()
+    # db.session.add(accion3)
+    # db.session.commit()
 
 
 #* --- RUTAS DE FLASK ---
@@ -176,6 +185,11 @@ def doctor():
     robots_db = db.session.query(Robots).all()
     tareas_db = db.session.query(Tareas).all()
     accion_db = db.session.query(Tabla_Medico).all()
+    ini_time_for_now = datetime.now()
+    for elems in accion_db:
+        new_final_time = ini_time_for_now - \
+                 accion_db.testimado
+    
 
     #for task in tareas_db: print(task.name)
     #for robot in robots_db: print(robot.name)
@@ -212,7 +226,9 @@ def delete_robot(id_t):
 @app.route("/doctor/<id>")
 def robot(id):
     robot = db.session.query(Robots).get(id)
-    return render_template('template_robot.jinja', robot= robot)
+    acciones = db.session.query(Tabla_Medico).filter_by(name_robot=robot.name)
+
+    return render_template('template_robot.jinja', robot= robot, acciones = acciones)
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():
