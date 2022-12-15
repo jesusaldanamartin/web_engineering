@@ -54,6 +54,11 @@
                                     <!--Limpiar button -->
                                     <input type="reset" value="Limpiar" class="btn btn-block mb-4 bot_inicio">
 
+                                    {% for mesg in get_flashed_messages() %}
+                                        <div class = "text-center alert alert-success">
+                                            <p style="color: green;">{{ mesg }}<p></p>
+                                         </div> 
+                                    {% endfor %}
                                 </form>
                             </div>
                         </div>
