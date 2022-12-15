@@ -39,7 +39,7 @@
                         <div class="form-group row mb-4">
                             <label for="id" class="col-sm-2 col-form-label">ID ROBOT</label>
                             <div class="col-sm-10">
-                                <input type="id_robot" class="form-control" disabled="true" id="id_robot" name="id_robot"
+                                <input type="id_robot" class="form-control" id="id_robot" name="id_robot"
                                     value="{{ tablas.id_robot}}">
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="form-group row mb-4">
                             <label for="name_robot" class="col-sm-2 col-form-label">Nombre del robot</label>
                             <div class="col-sm-10">
-                                <input type="name_robot" class="form-control" disabled="true" id="name_robot" name="name_robot"
+                                <input type="name_robot" class="form-control" id="name_robot" name="name_robot"
                                     value="{{ tablas.name_robot}}">
                             </div>
                         </div>
@@ -58,14 +58,14 @@
                         <div class="form-group row mb-4">
                             <label for="n" class="col-sm-2 col-form-label">Tipo de tareas que realiza el robot</label>
                             <div class="col-sm-10">
-                                <input type="name_robot" class="form-control" disabled="true" id="name_robot" name="name_robot"
+                                <input type="name_robot" class="form-control" id="name_robot" name="tipo_Tarea"
                                     value="{{ tablas.tipo_tarea }}">
                             </div>
                         </div>
                         <div class="form-group row mb-4">
                             <label for="name_robot" class="col-sm-2 col-form-label">Tarea asignada</label>
                             <div class="col-sm-10">
-                                <input type="name_robot" class="form-control" id="name_robot" name="name_robot"
+                                <input type="id_Tareas" class="form-control" id="id_Tareas" name="id_Tareas"
                                     placeholder="Inserte la nueva tarea">
                             </div>
                         </div>
@@ -99,7 +99,22 @@
                             Enviar
                         </button>
                         <!--Limpiar Tarea button -->
-                        <input type="reset" value="Limpiar" class="btn btn-block mb-4 bot_inicio">
+                        <button type="submit" class="btn btn-block mb-4 bot_inicio">
+                            Limpiar
+                        </button>
+                        {% for mesg in get_flashed_messages() %}
+                            {% if mesg == '¡Tarea asignada con éxito!' %}
+                            <div class="text-center alert alert-success">
+                                <p style="color: green;">{{ mesg }}
+                                <p>
+                            </div>
+                            {% else %}
+                            <div class="text-center alert alert-danger ">
+                                <p style="color: red;">{{ mesg }}
+                                <p></p>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
                     </form>
                 </div>
             </div>
