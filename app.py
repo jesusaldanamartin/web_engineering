@@ -132,7 +132,7 @@ def inserts():
     robotJ = Robots(id = "9", name = "Robot-J", id_Tareas = "400")
  
 
-    accion1 = Tabla_Medico(id_robot="0", name_robot="Robot1", id_Tareas="100", estado="Ocupado",tipoTarea="Limpieza pasillo" )
+    accion1 = Tabla_Medico(id_robot="0", name_robot="Robot-A", id_Tareas="100", estado="Ocupado",tipoTarea="Limpieza pasillo" )
     accion2 = Tabla_Medico(id_robot="1", name_robot="Robot2", id_Tareas="200", estado="Disponible",tipoTarea="..." )
 
     #asg_tareas = AsignarTareasRobots(tipo_tarea="Limpieza",tipo_tarea_asignada="...",id_Tareas="100",nombre_robot="",id_robot=,estado=)
@@ -283,6 +283,15 @@ def robot(id):
     acciones = db.session.query(Tabla_Medico).filter_by(name_robot=robot.name)
 
     return render_template('template_robot.jinja', robot= robot, acciones = acciones)
+
+@app.route("/asignarTareas/<id>")
+def asignar_tarea_robot(id):
+    robot = db.session.query(Robots).get(id)
+    acciones = db.session.query(Tabla_Medico).filter_by(name_robot=robot.name)
+
+    return render_template('template_asignar_tarea.jinja', robot= robot, acciones = acciones)
+
+
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
 def tarea():
