@@ -259,9 +259,6 @@ def admin():
     robots_db = db.session.query(Robots).all()
     incidencias_db = db.session.query(Incidencias).all()
 
-    #for user in usuarios_db: print(user.name)
-    #for task in tareas_db: print(task.name)
-    #for robot in robots_db: print(robot.name)
 
     return render_template('template_tecnico.jinja', usuarios = usuarios_db, tareas = tareas_db, robots = robots_db, incidencias = incidencias_db)
 
@@ -269,22 +266,25 @@ def admin():
 def doctor():
 
     accion_db = db.session.query(Tabla_Medico).all()
-    # for element in accion_db :
-    #     now = datetime.now()
-    #     print(now)
-    #     tiempoEstimadoElemento =   element.date + timedelta(hours= element.tiempoEstimado + 1)
-    #     print(tiempoEstimadoElemento)
-    #     print(element.tiempoEstimado)
-    #     if element.estado == "Ocupado" and (now >= tiempoEstimadoElemento):
-    #         id = element.id_robot
+    for element in accion_db :
+        now = datetime.now()
+        tiempoEstimadoElemento =   element.date + timedelta(hours= element.tiempoEstimado + 1)
+        if element.estado == "Ocupado" and (now >= tiempoEstimadoElemento):
+            robot = element.id_robot
+            nombre = element.name_robot
+            idT = element.id_Tareas
+            est = "Disponible"
+            TipTa = element.tipoTarea
+            tiTaAsig = element.tipoTareaAsignada
+            filaNueva = Tabla_Medico(id_robot = robot, name_robot = nombre, id_Tareas = idT, estado = est, tipoTarea = TipTa, tipoTareaAsignada = tiTaAsig, tiempoEstimado = 0.01)
+            if(filaNueva != None):
+                db.session.delete(element)
+                db.session.commit()
+                db.session.add(filaNueva)
+                db.session.commit()
+                return render_template('template_medico.jinja',acciones=accion_db)
 
-    #         update(Tabla_Medico).where(Tabla_Medico.c.id_robot == id).values(estado= "Disponible")
-    #         db.session.commit()
-    #         update(Tabla_Medico).where(Tabla_Medico.c.id_robot == id).values(tipoTareaAsignada= "...")
-    #         db.session.commit()
-    #         return render_template('template_medico.jinja', acciones=accion_db)
-
-    return render_template('template_medico.jinja', acciones=accion_db)
+    return render_template('template_medico.jinja',acciones=accion_db)
 
 @app.route("/deleteTarea/<id_t>")
 def delete_tarea(id_t):
@@ -423,7 +423,6 @@ def robot_tecnico():
 @app.route("/admin/formularioUsuarios/<id_u>", methods=["GET","POST"])
 def editarUsuario(id_u):
     usuarioSE =  db.session.query(Users).get(id_u)
-    print(usuarioSE)
     return render_template('formulario_tecnico_usuario.jinja')
 
 
@@ -449,18 +448,17 @@ def edit_prueba(name):
                 flash("¡Tarea asignada con éxito!")
             return render_template('formulario_tabla_medico.jinja', tablas = fila_1)
         else:
-            flash("Tarea no se puede asignar. El robot está ocupado")
-            return render_template('formulario_tabla_medico.jinja', tablas = fila_1)
-        # db.session.add(fila)
-        # # historial = Historial(id = id_robot, id_robot=id_robot, id_tarea=id_Tareas )
-        # # db.session.add(historial)
-        # # db.session.commit()
-        # if(fila != None):
-        #     db.session.delete(fila_1)
-        #     db.session.commit()
-        # flash("¡Tarea asignada con éxito!")
-        # return render_template('formulario_tabla_medico.jinja', tablas = fila_1 , tarea = tarea)
-
+             filaNueva = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_Tareas , estado ="Ocupado",tipoTarea = tipoTarea, tipoTareaAsignada = tipoTareaAsignada, tiempoEstimado = 0.01)
+             tiempoEstimadoElemento =   fila_1.date + timedelta(hours= fila_1.tiempoEstimado + 1)
+             if(filaNueva != None):
+                db.session.delete(fila_1)
+                db.session.commit()
+                db.session.add(filaNueva)
+                db.session.commit()
+                flash("¡Tarea asignada con éxito!")
+             else:
+                flash("No se puede asignar tarea, el robot está ocupado")
+                return render_template('formulario_tabla_medico.jinja', tablas = fila_1)
     return render_template('formulario_tabla_medico.jinja', tablas = fila_1)
 
 @app.route("/doctor/formularioIncidencia", methods=["GET","POST"])
