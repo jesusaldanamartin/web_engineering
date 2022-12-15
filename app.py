@@ -35,12 +35,11 @@ class Users(db.Model):
 class Tareas(db.Model):
     __tablename__ = 'Tareas'
     id = db.Column(db.String(100), primary_key=True)
-    descripcionTarea = db.Column(db.String(150), nullable=False)
-    tipo = db.Column(db.String(120), nullable=False)
+    tipo_tarea = db.Column(db.String(120), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"<Task id={self.id} descipcionTarea={self.descripcionTarea} tipo={self.tipo} date={self.date}>"
+        return f"<Task id={self.id} tipo={self.tipo_tarea} date={self.date}>"
 
 class Admin(db.Model):
     __tablename__ = 'Administrators'
@@ -70,20 +69,19 @@ class Robots(db.Model):
     id = db.Column(db.String(150), nullable=False, primary_key= True)
     name = db.Column(db.String(150), nullable=False)
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
-    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
     date = db.Column(db.DateTime, default=datetime.utcnow)
     estado = db.Column(db.String(150), nullable=True)
 
     def __repr__(self):
-        return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} date={self.date}>"
+        return f"<Robot id={self.id} name={self.name} id_Tarea={self.id_Tareas} date={self.date}>"
 
 class Tabla_Medico(db.Model):
     __tablename__ = 'Tabla medico'
     id_robot = db.Column(db.String(150), nullable=False, primary_key= True)
     name_robot = db.Column(db.String(150), db.ForeignKey(Robots.name))
     id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id))
-    realizando_tarea = db.Column(db.String(150),nullable=False )
-    tipoTarea = db.Column(db.String(150), db.ForeignKey(Tareas.descripcionTarea))
+    estado = db.Column(db.String(150),nullable=False )
+    tipoTarea = db.Column(db.String(150), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     estado = db.Column(db.String(150), nullable=True)
     
@@ -91,39 +89,97 @@ class Tabla_Medico(db.Model):
         return self
 
     def __repr__(self):
-        return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} realizandoTarea={self.realizando_tarea} date={self.date}>"
+        return f"<TablaMedica id={self.id_robot} name={self.name_robot} id_Tarea={self.id_Tareas} tipoTarea={self.tipoTarea} realizandoTarea={self.realizando_tarea} date={self.date}>"
 
+
+#class AsignarTareasRobots(db.Model):
+#    __tablename__ = "Tabla asignar tareas robots"
+#    tipo_tarea = db.Column(db.String(120), db.ForeignKey(Tareas.tipo_tarea)) #* Limpieza, Transporte y Telemedicina
+#    tipo_tarea_asignada = db.Column(db.String(120), nullable= False) #* impieza de habitacion, Desinfeccion; Transporte de comida y Transporte de farmacos; Telemedicina
+#    id_Tareas = db.Column(db.String(100), db.ForeignKey(Tareas.id)) #* 0,1,2,3
+#    nombre_robot = db.Column(db.String(150), db.ForeignKey(Robots.name))
+#    id_robot = db.Column(db.String(150), db.ForeignKey(Robots.id))
+#    estado = db.Column(db.String(100), db.ForeignKey(Tabla_Medico.estado)) #* Ocupado o Disponible
+#  
+#    def __repr__(self):
+#        return f"<TablaAsignarTareas tipo_tarea={self.tipo_tarea} tarea_asignada={self.tipo_tarea_asignada} id_Tarea={self.id_Tareas} nombreRobot={self.nombre_robot} idRobot={self.id_robot} estado={self.estado}>"
 
 
 def inserts():
-    usr = Users(id=0, name="admin", email="email_admin@example.com", password="admin", status="admin")
-    usr2 = Users(id=10, name="person2", email="email_medico@example.com", password="67890", status="medico")
-    #usr3 = Users(id=20, name="person2", email="email_tecnico@example.com", password="67890", status="admin")
-    #usr4 = Users(id=30, name="person2", email="email_medico2@example.com", password="67890", status="medico")
+    admin = Users(id=0, name="admin", email="email_admin@example.com", password="admin", status="admin")
 
-    tarea1 = Tareas(id = 0, descripcionTarea = "Limpieza pasillo", tipo = "Limpieza")
-    tarea2 = Tareas(id = 1, descripcionTarea = "Transporte Medicamentos", tipo = "Transporte" )
+    usr1 = Users(id="10", name="person1", email="email_medico1@example.com", password="1", status="medico")
+    usr2 = Users(id="20", name="person2", email="email_medico2@example.com", password="2", status="medico")
+    usr3 = Users(id="30", name="person3", email="email_medico3@example.com", password="3", status="medico")
+    usr4 = Users(id="40", name="person4", email="email_medico4@example.com", password="4", status="medico")
+    usr5 = Users(id="50", name="person5", email="email_medico5@example.com", password="5", status="medico")
 
-    robot1 = Robots(id = 0, name = "Robot1", id_Tareas = 0, tipoTarea = "Limpieza pasillo")
-    robot2 = Robots(id = 1, name = "Robot2", id_Tareas = 1, tipoTarea = "Transporte de Medicamentos")
+    tarea100 = Tareas(id = "100", tipo_tarea = "Limpieza")
+    tarea200 = Tareas(id = "200", tipo_tarea = "Transporte")
+    tarea300 = Tareas(id = "300", tipo_tarea = "Desinfeccion")
+    tarea400 = Tareas(id = "400", tipo_tarea = "Telemedicina")
+    tarea500 = Tareas(id = "500", tipo_tarea = "Limpieza y Desinfeccion")
 
-    accion1 = Tabla_Medico(id_robot=0, name_robot="Robot1", id_Tareas=1, realizando_tarea="Ocupado",tipoTarea="Limpieza pasillo" )
-    accion2 = Tabla_Medico(id_robot=1, name_robot="Robot2", id_Tareas=1, realizando_tarea="Disponible",tipoTarea="..." )
-    #accion3 = Tabla_Medico(id_robot=2, name_robot="Robot1", id_Tareas=1, realizando_tarea="Ocupado",tipoTarea="Transporte medicamentos" )
+    robotA = Robots(id = "0", name = "Robot-A", id_Tareas = "100")
+    robotB = Robots(id = "1", name = "Robot-B", id_Tareas = "200")
+    robotC = Robots(id = "2", name = "Robot-C", id_Tareas = "100")
+    robotD = Robots(id = "3", name = "Robot-D", id_Tareas = "400")
+    robotE = Robots(id = "4", name = "Robot-E", id_Tareas = "200")
+    robotF = Robots(id = "5", name = "Robot-F", id_Tareas = "200")
+    robotG = Robots(id = "6", name = "Robot-G", id_Tareas = "300")
+    robotH = Robots(id = "7", name = "Robot-H", id_Tareas = "300")
+    robotI = Robots(id = "8", name = "Robot-I", id_Tareas = "500")
+    robotJ = Robots(id = "9", name = "Robot-J", id_Tareas = "400")
+ 
 
-    db.session.add(usr)
+    accion1 = Tabla_Medico(id_robot="0", name_robot="Robot1", id_Tareas="100", estado="Ocupado",tipoTarea="Limpieza pasillo" )
+    accion2 = Tabla_Medico(id_robot="1", name_robot="Robot2", id_Tareas="200", estado="Disponible",tipoTarea="..." )
+
+    #asg_tareas = AsignarTareasRobots(tipo_tarea="Limpieza",tipo_tarea_asignada="...",id_Tareas="100",nombre_robot="",id_robot=,estado=)
+
+    db.session.add(admin)
+    db.session.commit()
+    db.session.add(usr1)
     db.session.commit()
     db.session.add(usr2)
     db.session.commit()
+    db.session.add(usr3)
+    db.session.commit()
+    db.session.add(usr4)
+    db.session.commit()
+    db.session.add(usr5)
+    db.session.commit()
 
-    db.session.add(tarea1)
+    db.session.add(tarea100)
     db.session.commit()
-    db.session.add(tarea2)
+    db.session.add(tarea200)
+    db.session.commit()
+    db.session.add(tarea300)
+    db.session.commit()
+    db.session.add(tarea400)
+    db.session.commit()
+    db.session.add(tarea500)
     db.session.commit()
 
-    db.session.add(robot1)
+    db.session.add(robotA)
     db.session.commit()
-    db.session.add(robot2)
+    db.session.add(robotB)
+    db.session.commit()
+    db.session.add(robotC)
+    db.session.commit()
+    db.session.add(robotD)
+    db.session.commit()
+    db.session.add(robotE)
+    db.session.commit()
+    db.session.add(robotF)
+    db.session.commit()
+    db.session.add(robotG)
+    db.session.commit()
+    db.session.add(robotH)
+    db.session.commit()
+    db.session.add(robotI)
+    db.session.commit()
+    db.session.add(robotJ)
     db.session.commit()
 
     db.session.add(accion1)
@@ -207,7 +263,6 @@ def delete_tarea(id_t):
 
 @app.route("/deleteUsuario/<id_u>")
 def delete_usuario(id_u):
-
     usuario = db.session.query(Users).get(id_u)
     db.session.delete(usuario)
     db.session.commit()
@@ -216,7 +271,6 @@ def delete_usuario(id_u):
 
 @app.route("/deleteRobot/<id_t>")
 def delete_robot(id_t):
-
     robot = db.session.query(Robots).get(id_t)
     db.session.delete(robot)
     db.session.commit()
@@ -235,8 +289,7 @@ def tarea():
     tareaNula = Tareas()
     if request.method == 'POST':
         id_tarea = request.form['id']
-        descripcion_tarea= request.form['descripcionTarea']
-        tipo_tarea = request.form['tipo']
+        tipo_tarea = request.form['tipo_tarea']
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
 
         if (tarea_exists):
@@ -244,7 +297,7 @@ def tarea():
             return render_template('formulario_tecnico_tareas.jinja')
 
         else: 
-            tarea = Tareas(id = id_tarea, descripcionTarea = descripcion_tarea, tipo = tipo_tarea)
+            tarea = Tareas(id = id_tarea, tipo_tarea = tipo_tarea)
             db.session.add(tarea)
             db.session.commit()
             flash('¡Tarea creada con éxito!')
@@ -291,7 +344,6 @@ def robot_tecnico():
 
         robot_exists = db.session.query(exists().where(Robots.id == id_robot)).scalar()
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
-        tarea_tipo_exists = db.session.query(exists().where(Tareas.descripcionTarea == tipo_tarea)).scalar()
 
         if (robot_exists):
             flash('ERROR: Este robot ya existe, prueba otro ID')
@@ -299,8 +351,8 @@ def robot_tecnico():
 
         else: 
     
-            if(tarea_exists and tarea_tipo_exists): 
-                robot = Robots(id = id_robot, name=name_robot, id_Tareas = id_tarea, tipoTarea = tipo_tarea)
+            if(tarea_exists): 
+                robot = Robots(id = id_robot, name=name_robot, id_Tareas = id_tarea)
                 db.session.add(robot)
                 db.session.commit()
                 
@@ -322,9 +374,11 @@ def editarUsuario(id_u):
 
 
 
-@app.route("/doctor/edit/<id>", methods=["GET","POST"])
+@app.route("/doctor/asignarTareas/<id>", methods=["GET","POST"])
 def edit(id):
     fila_1 = db.session.query(Tabla_Medico).get(id)
+    tarea = db.session.query(Tareas).all()
+    print(tarea)
     if request.method == 'POST':
         id_robot = request.form['id_robot']
         name_robot = request.form['name_robot']
@@ -343,13 +397,13 @@ def edit(id):
             return render_template('')
 
         else: 
-            fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, realizando_tarea=estado,tipoTarea = tipo_tarea)
+            fila = Tabla_Medico(id_robot=id_robot, name_robot=name_robot, id_Tareas=id_tarea, estado=estado,tipoTarea = tipo_tarea)
             db.session.add(fila)
             if(fila != None):
                 db.session.delete(fila_1)
                 db.session.commit()
-            return render_template('formularioPrueba.jinja', tablas = fila_1)
-    return render_template('formularioPrueba.jinja', tablas = fila_1)
+            return render_template('formulario_tabla_medico.jinja', tablas = fila_1 , tarea = tarea)
+    return render_template('formulario_tabla_medico.jinja', tablas = fila_1, tarea=tarea)
 
 @app.route("/doctor/formularioIncidencia", methods=["GET","POST"])
 def incidencia():
@@ -369,20 +423,19 @@ def incidencia():
 @app.route("/admin/formularioTareas/<id>", methods=["GET","POST"])
 def edit_tareas(id):
     tarea_1 = db.session.query(Tareas).get(id)
-
+ 
     if request.method == 'POST':
         id_tarea = request.form['id']
-        descripcion_tarea= request.form['descripcionTarea']
-        tipo_tarea = request.form['tipo']
+        #descripcion_tarea= request.form['descripcionTarea']
+        tipo_tarea = request.form['tipo_tarea']
 
-        tarea = Tareas(id = id_tarea, descripcionTarea = descripcion_tarea, tipo = tipo_tarea)
+        tarea = Tareas(id = id_tarea, tipo_tarea=tipo_tarea)
         db.session.add(tarea)
         if(tarea != None):
             db.session.delete(tarea_1)
             db.session.commit()
-        return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
+        return render_template('formulario_tecnico_tareas.jinja', tabla = tarea)
 
-        
     return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
 
 
