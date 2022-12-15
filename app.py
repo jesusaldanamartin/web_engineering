@@ -425,6 +425,7 @@ def edit_prueba(name):
             if(fila != None):
                 db.session.delete(fila_1)
                 db.session.commit()
+            flash("¡Tarea asignada con éxito!")
             return render_template('formulario_tabla_medico.jinja', tablas = fila_1 , tarea = tarea)
 
     return render_template('formulario_tabla_medico.jinja', tablas = fila_1, tarea=tarea)
