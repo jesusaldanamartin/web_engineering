@@ -65,7 +65,7 @@ background: radial-gradient(circle, rgba(238,174,202,1) 17%, rgba(237,160,255,1)
     display: block;
 }
 
-#task-div, #robot-div{
+#task-div, #robot-div, #incidencia-div{
     display: none;
 }
 
@@ -129,6 +129,14 @@ background: radial-gradient(circle, rgba(238,174,202,1) 17%, rgba(237,160,255,1)
 
 .bot{
     padding-bottom: 2.3cm;
+}
+
+.bot2{
+    padding-bottom: 2.9cm;
+}
+
+.bot3{
+    padding-bottom: 4.2cm;
 }
 
 ---------  Breadcrumb
@@ -263,4 +271,3 @@ a:link{
    content: "/";
 }
 
----------  Breadcrumb

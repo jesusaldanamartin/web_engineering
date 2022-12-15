@@ -120,7 +120,7 @@
    </div>
   </div>
   </div> -->
-    <fieldset class="text-black col-md-10 px-3 bot">
+    <fieldset class="text-black col-md-10 px-3 bot2">
       <form method="GET" class="mt-5 row justify-content-center table-sortable">
         <div>
           <table class="table">
@@ -130,7 +130,7 @@
                 <th scope="col">Nombre robot</th>
                 <th scope="col">ID Tarea</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Realizando tarea</th>
+                <th scope="col">Tarea asignada</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Asignar tarea</th>
               </tr>
@@ -141,11 +141,11 @@
                 <td>{{tablas.id_robot}}</td>
                 <td><a href="/doctor/{{tablas.id_robot}}">{{tablas.name_robot}}</td>
                 <td>{{tablas.id_Tareas}}</td>
-                <td>{{tablas.realizando_tarea}}</td>
+                <td>{{tablas.estado}}</td>
                 <td>{{tablas.tipoTarea}}</td>
                 <td>{{tablas.date}}</td>
                 <td>
-                  <a href="/edit/{{tablas.id_robot}}">Asignar</a>
+                  <a href="doctor/asignarTareas/{{tablas.id_robot}}">Asignar</a>
                 </td>
               </tr>
               {% endfor %}

@@ -65,18 +65,17 @@
             </thead>
             <tbody>
               {% for user in usuarios %}
-              <tr>
-                <td>{{user.id}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.password}}</td>
-                <td>{{user.status}}</td>
-                <td>{{user.date}}</td>
-                <td>
-                  <a class="btn btn-secondary" href="/deleteUsuario/{{user.id}}">Eliminar</a>
-                </td>
-              </tr>
-              </tr>
+                  <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.status}}</td>
+                    <td>{{user.date}}</td>
+                    <td>
+                      <a class="btn btn-secondary" href="/deleteUsuario/{{user.id}}">Eliminar</a>
+                    </td>
+                  </tr>
               {% endfor %}
             </tbody>
           </table>
@@ -90,8 +89,7 @@
             <thead>
               <tr>
                 <th scope="col"> ID Tareas </th>
-                <th scope="col"> Descripcion Tarea </th>
-                <th scope="col"> Tipo de Tarea </th>
+                <th scope="col"> Tipo de tarea </th>
                 <th scope="col"> Fecha </th>
                 <th scope="col"> Editar </th>
               </tr>
@@ -100,8 +98,7 @@
               {% for task in tareas %}
               <tr>
                 <td>{{task.id}}</td>
-                <td>{{task.descripcionTarea}}</td>
-                <td>{{task.tipo}}</td>
+                <td>{{task.tipo_tarea}}</td>
                 <td>{{task.date}}</td>
                 <td>
                   <a class="btn btn-secondary" href="/admin/formularioTareas/{{ task.id }}">Editar</a>
@@ -123,7 +120,6 @@
                 <th scope="col"> ID Robot </th>
                 <th scope="col"> Nombre Robot </th>
                 <th scope="col"> Tarea Asociada ID </th>
-                <th scope="col"> Descripcion Tarea Asociada </th>
                 <th scope="col"> Fecha </th>
 
               </tr>
@@ -134,7 +130,6 @@
                 <td>{{robot.id}}</td>
                 <td>{{robot.name}}</td>
                 <td>{{robot.id_Tareas}}</td>
-                <td>{{robot.tipoTarea}}</td>
                 <td>{{robot.date}}</td>
 
               </tr>

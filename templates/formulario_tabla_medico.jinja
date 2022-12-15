@@ -24,42 +24,66 @@
             <div class="card">
                 <div class="card-body py-5 px-md-5">
                     <form class="form_formulario_tecnico_usuario" action="/doctor/edit/<id>" method="POST">
+                        {#
+                        <!-- Tipo Tarea input -->
+                          <div class="form-group row mb-4"">
+                            <label for="exampleFormControlSelect1">Tipo de tarea</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                {% for t in tarea %}
+                                    <option>{{t.tipo_tarea}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>#}
 
                         <!-- ID input -->
                         <div class="form-group row mb-4">
                             <label for="id" class="col-sm-2 col-form-label">ID ROBOT</label>
                             <div class="col-sm-10">
-                                <input type="id_robot" class="form-control" id="id_robot" name="id_robot"
-                                    placeholder="ID ROBOT">
+                                <input type="id_robot" class="form-control" disabled="true" id="id_robot" name="id_robot"
+                                    value="{{ tablas.id_robot}}">
                             </div>
                         </div>
 
+
                         <!-- Nombre Robot input -->
                         <div class="form-group row mb-4">
-                            <label for="name_robot" class="col-sm-2 col-form-label">Name</label>
+                            <label for="name_robot" class="col-sm-2 col-form-label">Nombre del robot</label>
+                            <div class="col-sm-10">
+                                <input type="name_robot" class="form-control" disabled="true" id="name_robot" name="name_robot"
+                                    value="{{ tablas.name_robot}}">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label for="name_robot" class="col-sm-2 col-form-label">Tipo de tareas que realiza el robot</label>
+                            <div class="col-sm-10">
+                                <input type="name_robot" class="form-control" disabled="true" id="name_robot" name="name_robot"
+                                    value="{{ tablas.tipo_tarea }}">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label for="name_robot" class="col-sm-2 col-form-label">Tarea asignada</label>
                             <div class="col-sm-10">
                                 <input type="name_robot" class="form-control" id="name_robot" name="name_robot"
-                                    placeholder="Name Robot">
+                                    placeholder="Inserte la nueva tarea">
                             </div>
                         </div>
                         <!-- ID TAREAS input -->
-                        <div class="form-group row mb-4">
+                        {# <div class="form-group row mb-4">
                             <label for="id_Tareas" class="col-sm-2 col-form-label">ID TAREAS</label>
                             <div class="col-sm-10">
                                 <input type="id_Tareas" class="form-control" id="id_Tareas" name="id_Tareas"
                                     placeholder="ID TAREAS">
                             </div>
-                        </div>
+                        </div>#}
                         <!-- realizando Tarea input -->
                         {# <div class="form-group row mb-4">
-                            <label for="realizando_tarea" class="col-sm-2 col-form-label">Realizando Tarea</label>
+                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
-                                <input type="realizando_tarea" class="form-control" id="realizando_tarea"
-                                    name="realizando_tarea" placeholder="realizando_tarea">
+                                <input type="estado" class="form-control" id="estado"
+                                    name="estado" placeholder="estado">
                             </div>
                         </div> #}
-
-                        <!-- Tipo Tarea input -->
+                        {#
                         <div class="form-group row mb-4">
                             <label for="tipoTarea" class="col-sm-2 col-form-label">Tipo Tarea</label>
                             <div class="col-sm-10">
@@ -67,9 +91,7 @@
                                     placeholder="Tipo Tarea">
                             </div>
                         </div>
-
-
-
+                        #}
                         <!-- Enviar Usuario button -->
                         <button type="submit" class="btn btn-block mb-4 bot_inicio">
                             Enviar
