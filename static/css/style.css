@@ -124,3 +124,137 @@
 .bot{
     padding-bottom: 2.3cm;
 }
+
+---------  Breadcrumb
+
+body {
+    background-color: #f9f9fa
+}
+
+.flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+@media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+}
+
+.padding {
+    padding: 5rem
+}
+
+
+
+.card .card-title {
+    color: #000000;
+    margin-bottom: 0.625rem;
+    text-transform: capitalize;
+    font-size: 0.875rem;
+    font-weight: 500
+}
+
+.card .card-description {
+    margin-bottom: .875rem;
+    font-weight: 400;
+    color: #76838f
+}
+
+.breadcrumb.breadcrumb-custom {
+   padding: 0 0;
+   border-color: #dbe3e6;
+}
+
+.breadcrumb {
+   border: 1px solid #f3f3f3;
+}
+
+.breadcrumb {
+   display: flex;
+   flex-wrap: wrap;
+   padding: 0.56rem 1.13rem;
+   margin-bottom: 1rem;
+   list-style: none;
+   background-color: transparent;
+   border-radius: 0.25rem;
+}
+
+nav {
+   display: block;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item {
+   font-size: 0.875rem;
+   background: #dbe3e6;
+   padding: 0.56rem 10px;
+   color: #000;
+   display: inline-block;
+   vertical-align: top;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item:before {
+   content: "";
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item a {
+   position: relative;
+   color: inherit;
+   border: 1px solid #dbe3e6;
+   display: inline-block;
+   vertical-align: top;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item a:before {
+   right: -22px;
+   z-index: 3;
+   border-left-color: #dbe3e6;
+   border-left-style: solid;
+   border-left-width: 12px;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item a:after {
+   border-top: 21px solid transparent;
+   border-bottom: 22px solid transparent;
+   border-left: 12px solid #ffffff;
+   top: -9px;
+   right: -23px;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item:last-child {
+   background: transparent;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item:before {
+   content: "";
+}
+.breadcrumb.breadcrumb-custom .breadcrumb-item a:before, .breadcrumb.breadcrumb-custom .breadcrumb-item a:after {
+   position: absolute;
+   top: -9px;
+   width: 0;
+   height: 0;
+   content: "";
+   border-top: 21px solid transparent;
+   border-bottom: 21px solid transparent;
+}
+
+a:link{
+   
+   text-decoration:none;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+   display: inline-block;
+   padding-right: 0.5rem;
+   color: #6c757d;
+   content: "/";
+}
+
+---------  Breadcrumb
