@@ -169,7 +169,7 @@ def admin():
     #for task in tareas_db: print(task.name)
     #for robot in robots_db: print(robot.name)
 
-    return render_template('template_tecnico.jinja', usuarios = usuarios_db, tareas = tareas_db, robots = robots_db)
+    return render_template('template_tecnico.jinja', usuarios = usuarios_db, tareas = tareas_db, robots = robots_db, incidencias = incidencias_db)
 
 @app.route("/doctor", methods=["GET", "POST"])
 def doctor():
