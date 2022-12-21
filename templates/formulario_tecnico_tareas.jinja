@@ -14,11 +14,11 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-custom">
                         <li class="breadcrumb-item"><a href="/admin" data-abc="true">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><span>Formulario para añadir una tarea</span></li>
+                        <li class="breadcrumb-item active" aria-current="page"><span>Formulario de tareas </span></li>
                     </ol>
                 </nav>
             </div>
-            <h1 class="main-container row p-3 mx-0 justify-content-center align-self-center">Añada una tarea</h1>
+            <h1 class="main-container row p-3 mx-0 justify-content-center align-self-center">Formulario de Tareas</h1>
             <form class="main-container row p-3 mx-0 justify-content-center align-self-center" method="post"
                 name="formulario_lista_tareas">
 
@@ -57,7 +57,7 @@
                             <input type="reset" value="Limpiar" class="btn btn-block mb-4 bot_inicio">
 
                             {% for mesg in get_flashed_messages() %}
-                            {% if mesg == '¡Tarea creada con éxito!' %}
+                            {% if mesg == '¡Tarea creada con éxito!' or mesg== '¡Tarea editada con éxito!' %}
                             <div class="text-center alert alert-success">
                                 <p style="color: green;">{{ mesg }}
                                 <p>
