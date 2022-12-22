@@ -417,7 +417,7 @@ def robot_tecnico():
         id_robot = request.form['id']
         name_robot=  request.form['name']
         id_tarea= request.form['id_Tareas']
-        tipoTarea = request.form['tipoTarea']
+        #tipoTarea = request.form['tipoTarea']
 
         robot_exists = db.session.query(exists().where(Robots.id == id_robot)).scalar()
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
