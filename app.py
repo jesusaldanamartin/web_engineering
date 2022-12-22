@@ -339,6 +339,7 @@ def asignar_tarea_robot(id):
 
 
 @app.route("/admin/formularioTareas", methods=["GET","POST"])
+
 def tarea():
     tareaNula = Tareas()
     if request.method == 'POST':
@@ -348,16 +349,38 @@ def tarea():
 
         if (tarea_exists):
             flash('ERROR: La tarea ya existe o faltan campos por rellenar')
-            return render_template('formulario_tecnico_tareas.jinja')
+            return render_template('formulario_tecnico_tareas.jinja', tabla = tareaNula)
 
         else: 
             tarea = Tareas(id = id_tarea, tipo_tarea = tipo_tarea)
             db.session.add(tarea)
             db.session.commit()
             flash('¡Tarea creada con éxito!')
-            return render_template('formulario_tecnico_tareas.jinja', tabla=tareaNula)
+            return render_template('formulario_tecnico_tareas.jinja', tabla = tarea)
         
     return render_template('formulario_tecnico_tareas.jinja', tabla = tareaNula)
+
+   
+@app.route("/formularioTareas/<id>", methods=["GET","POST"])
+def edit_tareas(id):
+    tarea_1 = db.session.query(Tareas).get(id)
+ 
+    if request.method == 'POST':
+        id_tarea = request.form['id']
+        tipo_tarea = request.form['tipo_tarea']
+        
+        tarea = Tareas(id = id_tarea, tipo_tarea=tipo_tarea)
+        db.session.add(tarea)
+        if(tarea != None and tarea.id == id and tipo_tarea != None):
+            db.session.delete(tarea_1)
+            db.session.commit()
+            flash('¡Tarea editada con éxito!')
+            return render_template('formulario_tecnico_tareas.jinja', tabla = tarea)
+        else:
+            flash('El id de la Tarea no se puede modificar')
+            
+
+    return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
 
 @app.route("/admin/formularioUsuarios" , methods=["GET","POST"])
 def usuario():
@@ -394,7 +417,7 @@ def robot_tecnico():
         id_robot = request.form['id']
         name_robot=  request.form['name']
         id_tarea= request.form['id_Tareas']
-        tipoTarea = request.form['tipoTarea']
+        #tipoTarea = request.form['tipoTarea']
 
         robot_exists = db.session.query(exists().where(Robots.id == id_robot)).scalar()
         tarea_exists = db.session.query(exists().where(Tareas.id == id_tarea)).scalar()
@@ -475,25 +498,6 @@ def incidencia():
             
     
     return render_template('formulario_incidencia_medico.jinja')
-
-    
-@app.route("/formularioTareas/<id>", methods=["GET","POST"])
-def edit_tareas(id):
-    tarea_1 = db.session.query(Tareas).get(id)
- 
-    if request.method == 'POST':
-        id_tarea = request.form['id']
-        #descripcion_tarea= request.form['descripcionTarea']
-        tipo_tarea = request.form['tipo_tarea']
-
-        tarea = Tareas(id = id_tarea, tipo_tarea=tipo_tarea)
-        db.session.add(tarea)
-        if(tarea != None):
-            db.session.delete(tarea_1)
-            db.session.commit()
-        return render_template('formulario_tecnico_tareas.jinja', tabla = tarea)
-
-    return render_template('formulario_tecnico_tareas.jinja', tabla = tarea_1)
 
 if __name__ == "__main__":
     app.app_context().push()
